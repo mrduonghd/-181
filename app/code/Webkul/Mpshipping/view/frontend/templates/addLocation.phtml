@@ -1,0 +1,70 @@
+ <?php
+ $locationModel = $block->getLocationModel();
+ $helper = $locationModel->getHelper();
+ $mpHelper = $locationModel->getMpHelper();
+ $apikey = $helper->getGoogleApiKey();
+ $sellerShip = $helper->sellerShipping($mpHelper->getCustomerId());
+ $saveUrl = $block->getUrl(
+     'mpshipping/seller/saveshipping',
+     [
+         '_secure' => $block->getRequest()->isSecure()
+     ]
+ );
+    ?>
+<form class="addPostForm1" 
+action="<?= $block->escapeUrl($saveUrl) ?>" 
+data-mage-init='{"validation":{}}' 
+method="POST" id="custom-form1" 
+data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+    <div>
+        <fieldset class="fieldset info">
+            <div class="field required">
+                <label class="label">
+                    <?= /* @noEscape */  $block->escapeHtml(__('Location')) ?>:
+                </label>
+                <div class="control">
+                    <input type="text" 
+                    id="wkmpshipping-address" 
+                    class='required-entry input-text' 
+                    value="<?= /* @noEscape */  $sellerShip->getLocation();?>" 
+                    name='location' >
+                </div>
+            </div>
+            <div class="field required">
+                <label class="label">
+                    <?= /* @noEscape */  $block->escapeHtml(__('Latitude')) ?>:
+                </label>
+                <div class="control">
+                    <input type="text" 
+                    class='required-entry input-text' 
+                    value="<?= /* @noEscape */  $sellerShip->getLatitude();?>" 
+                    readonly name='latitude' 
+                    id="wkmpshipping-latitude">
+                </div>
+            </div>
+            <div class="field required">
+                <label class="label">
+                    <?= /* @noEscape */  $block->escapeHtml(__('Longitude')) ?>:
+                </label>
+                <div class="control">
+                    <input type="text" 
+                    value="<?= /* @noEscape */  $sellerShip->getLongitude();?>" 
+                    class='required-entry input-text' readonly 
+                    name='longitude' id ="wkmpshipping-longitude">
+                </div>
+            </div>
+          
+            <div class='wk-save-button'>
+                <button class="button" ><?= /* @noEscape */  $block->escapeHtml(__("SAVE"));?></button>
+            </div>
+        </fieldset>
+    </div>   
+    <div class="buttons-set">
+        <p class="back-link">
+            <a class="left" onclick="javascript: window.history.back();" href="javascript:;">« Back</a>
+        </p>
+    </div>        
+</form>
+<script type="text/javascript" 
+src="https://maps.googleapis.com/maps/api/js?key=<?= /* @noEscape */$apikey;?>&libraries=places">
+</script>

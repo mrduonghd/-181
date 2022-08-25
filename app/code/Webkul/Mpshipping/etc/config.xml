@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <webkulshipping>
+                <active>0</active>
+                <allowed_methods>delivery</allowed_methods>
+                <methods>delivery</methods>
+                <sallowspecific>0</sallowspecific>
+                <model>Webkul\Mpshipping\Model\Carrier</model>
+                <name>Webkul Table Rate Shipping</name>
+                <title>Table Rate</title>
+                <specificerrmsg>This shipping method is currently unavailable. If
+                  you would like to ship using this shipping method, please contact
+                  us.
+                </specificerrmsg>
+                <handling_type>F</handling_type>
+                <distance>0</distance>
+                <distance_unit>0</distance_unit>
+            </webkulshipping>
+        </carriers>
+    </default>
+</config>

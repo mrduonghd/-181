@@ -1,0 +1,39 @@
+{
+    "marketplace_timeslot_config": {
+        "column": {
+            "entity_id": true,
+            "seller_id": true,
+            "delivery_day": true,
+            "start_time": true,
+            "end_time": true,
+            "order_count": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_timeslot_order": {
+        "column": {
+            "entity_id": true,
+            "seller_id": true,
+            "slot_id": true,
+            "order_id": true,
+            "selected_date": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_item": {
+        "column": {
+            "delivery_date": true,
+            "delivery_time": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "delivery_date": true,
+            "delivery_time": true
+        }
+    }
+}

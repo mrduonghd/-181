@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <paypaljs>
+                <active>1</active>
+                <model>Mpx\PaypalJs\Model\Payment\PaypalJs\Payment</model>
+                <order_status>pending_payment</order_status>
+                <title>PayPal</title>
+                <allowspecific>0</allowspecific>
+                <payment_action>authorize</payment_action>
+                <sandbox_flag>1</sandbox_flag>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <sort_order>-2</sort_order>
+                <client_id backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <currency>JPY</currency>
+                <country_code>JP</country_code>
+                <min_order_total>1</min_order_total>
+                <paymentInfoKeys>card_type,order_id</paymentInfoKeys>
+                <enabled_card>1</enabled_card>
+                <credit_card_title>クレジットカード</credit_card_title>
+                <authorization_period>29</authorization_period>
+                <honor_period>3</honor_period>
+            </paypaljs>
+            <paypalcc>
+                <active>1</active>
+                <model>Mpx\PaypalJs\Model\Payment\CreditCard\Payment</model>
+                <order_status>pending_payment</order_status>
+                <title>クレジットカード</title>
+                <allowspecific>0</allowspecific>
+                <payment_action>authorize</payment_action>
+                <sandbox_flag>1</sandbox_flag>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <sort_order>-2</sort_order>
+                <client_id backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <currency>JPY</currency>
+                <country_code>JP</country_code>
+                <min_order_total>1</min_order_total>
+                <paymentInfoKeys>card_type,order_id</paymentInfoKeys>
+                <enabled_card>1</enabled_card>
+                <credit_card_title>クレジットカード</credit_card_title>
+                <authorization_period>29</authorization_period>
+                <honor_period>3</honor_period>
+            </paypalcc>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="seller-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="seller.content">
+            <referenceBlock class="Mpx\Marketplace\Block\Product\Create" name="marketplace_product_edit" template="Webkul_Marketplace::product/edit.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

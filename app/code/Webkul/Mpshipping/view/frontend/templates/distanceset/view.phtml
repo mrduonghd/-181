@@ -1,0 +1,401 @@
+<?php
+$paramData = $block->getParams();
+$filter = $paramData['s'] ?? '';
+$filterPriceFrom = $paramData['price_from'] ?? '';
+$filterPriceTo = $paramData['price_to'] ?? '';
+$distanceFrom = $paramData['distance_from'] ?? '';
+$distanceTo = $paramData['distance_to'] ?? '';
+$shippingCollection = $block->getDistShippingCollection();
+$updateUrl = $block->getUrl(
+    'mpshipping/distanceset/update',
+    ['_secure' => $block->getIsSecure()]
+);
+$editFileUrl = $block->getViewFileUrl(
+    'Webkul_Marketplace::images/icon-edit.png'
+);
+$deleteFileUrl = $block->getViewFileUrl(
+    'Webkul_Marketplace::images/icon-trash.png'
+);
+$currencySymbol = $block->getBaseCurrencySymbol();
+$massDeleteUrl = $block->getUrl(
+    'mpshipping/distanceset/massdelete',
+    ['_secure' => $block->getIsSecure()]
+);
+$viewUrl = $block->getUrl(
+    'mpshipping/distanceset/view',
+    ['_secure' => $block->getIsSecure()]
+);
+$saveUrl = $block->getUrl(
+    'mpshipping/distanceset/save',
+    ['_secure' => $block->getIsSecure()]
+);
+?>
+<form class="form" action="<?= $block->escapeUrl($saveUrl); ?>" method="post" 
+id="addDistshippingform" data-mage-init='{"validation":{}}' 
+enctype="multipart/form-data" 
+data-hasrequired="<?= /* @noEscape */ __('* Required Fields') ?>" autocomplete="off">
+  <div class="wk-mp-design">
+    <fieldset class="fieldset info wk-mp-fieldset">
+        <?= /* @noEscape */ $block->getBlockHtml('formkey')?>
+        <?= /* @noEscape */ $block->getBlockHtml('seller.formkey')?>
+    <div class="wk-mp-page-title page-title">
+        <button
+            class="button wk-mp-btn action save primary"
+            title="<?= /* @noEscape */ __('Save') ?>"
+            type="submit"
+        >
+            <span><span><?= /* @noEscape */ __('Save') ?></span></span>
+        </button>
+    </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Price From")." (".$currencySymbol.")"; ?></span></label>
+            <div class="control">
+                <input id="price_from" type="text" name="price_from" 
+                data-validate="{required:true,'validate-not-negative-number':true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Price To")." (".$currencySymbol.")"; ?></span></label>
+            <div class="control">
+                <input id="price_to" type="text" name="price_to" 
+                data-validate="{required:true,'validate-not-negative-number':true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Distance From"); ?></span></label>
+            <div class="control">
+                <input id="dist_from" type="text" name="dist_from" 
+                data-validate="{required:true,'validate-not-negative-number':true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Distance To"); ?></span></label>
+            <div class="control">
+                <input id="dist_to" type="text" name="dist_to" 
+                data-validate="{required:true,'validate-not-negative-number':true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Shipping Method"); ?></span></label>
+            <div class="control">
+                <input id="shipping_method" type="text" name="shipping_method" data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field required">
+            <label class="label"><span><?= /* @noEscape */__("Price")." (".$currencySymbol.")"; ?></span></label>
+            <div class="control">
+                <input id="wk_price" type="text" name="price" 
+                data-validate="{required:true,'validate-not-negative-number':true}" />
+            </div>
+        </div>
+    </fieldset>
+  </div>
+</form>
+<div class="wk-mp-design wk_mpdistanceset">
+    <fieldset class="fieldset info wk-mp-fieldset">
+        <legend class="legend">
+            <span><?= /* @noEscape */__('Distance Range Shipping List') ?></span>
+        </legend>
+        <div class="grid">
+            <div class="hor-scroll">
+                <form action="<?= $block->escapeUrl($viewUrl) ?>"
+                 method="get" id="form-shippingsetlist-filter" 
+                 name="formShippingsetlistFilter" data-mage-init='{"validation":{}}'>
+                    <table cellspacing="0" class="border wk-mp-list-table">
+                        <thead>
+                            <tr id="wk-mp-tr-heading">
+                                <th><span><?= /* @noEscape */__('Method Name') ?></span></th>
+                                <th><span><?= /* @noEscape */__('Price') ?></span></th>
+                                <th><span><?= /* @noEscape */__('Distance') ?></span></th>
+                                <th><span>&nbsp;</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="wk-mp-body">
+                            <tr>
+                                <td>
+                                    <input type="text" class="input-text" 
+                                    name="s" 
+                                    placeholder='<?= /* @noEscape */__('Search by method name') ?>' 
+                                    value="<?= /* @noEscape */ $filter?>"/>
+                                </td>
+                                <td>
+                                    <span class="wk-mp-td-span">
+                                        <?= /* @noEscape */__('From: ') ?>
+                                        <input name="price_from" id="price-from"
+                                         class="input-text" value="<?= /* @noEscape */ $filterPriceFrom?>" />
+                                    </span>
+                                    <span class="wk-mp-td-span">
+                                        <?= /* @noEscape */__('To: ') ?>
+                                        <input name="price_to" id="price-to" 
+                                        class="input-text" value="<?= /* @noEscape */ $filterPriceTo?>" />
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="wk-mp-td-span">
+                                        <?= /* @noEscape */__('From: ') ?>
+                                        <input name="distance_from" id="distance-from" 
+                                        class="input-text" value="<?= /* @noEscape */ $filterPriceFrom?>" />
+                                    </span>
+                                    <span class="wk-mp-td-span">
+                                        <?= /* @noEscape */__('To: ') ?>
+                                        <input name="distance_to" id="distance-to" 
+                                        class="input-text" value="<?= /* @noEscape */ $filterPriceTo?>" />
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="button" title="Save" type="submit">
+                                        <span><span><span><?= /* @noEscape */__('Submit') ?></span></span></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <?php if ($shippingCollection && count($shippingCollection)): ?>
+                    <form action="<?= $block->escapeUrl($massDeleteUrl) ?>" 
+                    method="post" id="form-distancesetlist-massdelete" 
+                    name="formShippingsetlistMassdelete" data-mage-init='{"validation":{}}'>
+                        <?= /* @noEscape */ $block->getBlockHtml('formkey')?>
+                        <?= /* @noEscape */ $block->getBlockHtml('seller.formkey')?>
+                        <button class="button" title="<?= /* @noEscape */__('Delete Shipping Rule') ?>" 
+                        type="submit" style="float: left;padding: 5px 5px 5px 0;"  id="mass-delete-butn">
+                            <span><span><?= /* @noEscape */__('Delete Shipping Rule') ?></span></span>
+                        </button>
+                        <table cellspacing="0" class="border wk-mp-list-table wk-mp-list-container-table">
+                            <thead>
+                                <tr class="wk-content">
+                                    <th class="wk-check-first-td">
+                                        <span>
+                                            <input type="checkbox" name="mpselecctall" value="all" id="mpselecctall"/>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span class="label name">
+                                            <?= /* @noEscape */__('Price From')." (".$currencySymbol.")"?>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span class="label pro-status">
+                                            <?= /* @noEscape */__('Price To')." (".$currencySymbol.")"?>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span class="label name">
+                                            <?= /* @noEscape */__('Distance From') ?>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span class="label pro-status">
+                                            <?= /* @noEscape */__('Distance To') ?>
+                                        </span>
+                                    </th>
+                                    <th class="wk-list-th-display">
+                                        <span class="label qty">
+                                            <?= /* @noEscape */__('Price')." (".$currencySymbol.")"?>
+                                        </span>
+                                    </th>
+                                    <th class="wk-list-th-display">
+                                        <span class="label qty">
+                                            <?= /* @noEscape */__('Shipping Method')?>
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <span class="label">
+                                            <?= /* @noEscape */__('Action')?>
+                                        </span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $i = 0;
+                                foreach ($shippingCollection as $shippingset) {
+                                    $methodName = $block->getShippingMethodName($shippingset->getShippingMethodId());
+                                    $data['price_from']=$shippingset->getPriceFrom();
+                                    $data['price_to']=$shippingset->getPriceTo();
+                                    $data['dist_from']=$shippingset->getDistFrom();
+                                    $data['dist_to']=$shippingset->getDistTo();
+                                    $data['price']=$shippingset->getPrice();
+                                    $data['method_name']=$methodName;
+                                    $shipInfo=json_encode($data);
+                                    $i++;
+                                    ?>
+                                    <tr class="wk-row-view wk_row_list 
+                                    <?= /* @noEscape */ $class = ($i == count($shippingCollection))? 'wk-last_tr':''?>">
+                                        <td class="wk-check-first-td">
+                                            <span>
+                                                <input type="checkbox" name="distset_mass_delete[]" 
+                                                class="mpcheckbox" 
+                                                value="<?= /* @noEscape */ $shippingset->getEntityId(); ?>"/>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" class="hidden-id" 
+                                            value="<?= /* @noEscape */ $shippingset->getEntityId(); ?>" />
+                                            <span class="label pro-status">
+                                                <?= /* @noEscape */ $shippingset->getPriceFrom()?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="label pro-status">
+                                                <?= /* @noEscape */ $shippingset->getPriceTo()?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="label pro-status">
+                                                <?= /* @noEscape */ $shippingset->getDistFrom()?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="label pro-status">
+                                                <?= /* @noEscape */ $shippingset->getDistTo()?>
+                                            </span>
+                                        </td>
+                                        <td class="wk-list-th-display">
+                                            <span class="label qty">
+                                                <?= /* @noEscape */ $shippingset->getPrice()?>
+                                            </span>
+                                        </td>
+                                        <td class="wk-list-th-display1">
+                                            <span class="label qty">
+                                                <?= /* @noEscape */ $methodName?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                          <input type="hidden" class="data" value='<?= /* @noEscape */ $shipInfo ?>' />
+                                            <span class="label wk_action">
+                                                <img src="<?= /* @noEscape */ $editFileUrl ?>"
+                                                 alt="edit" title="edit" class="mpship_edit"/>
+                                                <img src="<?= /* @noEscape */ $deleteFileUrl; ?>"
+                                                 alt="delete" title="delete" class="mpship_delete"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }?>
+                            </tbody>
+                        </table>
+                    </form>
+                <?php else: ?>
+                    <div class="wk-emptymsg">
+                        <?= /* @noEscape */__('No Shipping Available') ?>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="wk_shipping_rate_wrapper" style="display:none">
+    <div class="wk_mp_design wk_mp_shippingset">
+    <span class="wk_close_wrapper">x</span>
+            <div class="block block-account">
+                <div class="block-title">
+                    <strong><span><h4><?= /* @noEscape */ __('Edit Shipping Rule') ?></h4></span></strong>
+                </div>
+            </div>
+            <form
+                action="<?= $block->escapeUrl($updateUrl) ?>"
+                method="post"
+                id="editRate"
+                data-mage-init='{"validation":{}}'
+            >
+                <?= /* @noEscape */ $block->getBlockHtml('formkey')?>
+                <?= /* @noEscape */ $block->getBlockHtml('seller.formkey')?>
+                <ul class="form-list" id="wk_bodymain">
+                    <li>
+                        <label><?= /* @noEscape */ __('Price From')." (".$currencySymbol.")" ?>:</label>
+                        <div class="input-box">
+                            <input type="text" name="price_from" 
+                            id="pricefrom" value="" 
+                            class="required-entry validate-not-negative-number" />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Price To')." (".$currencySymbol.")" ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                class="required-entry validate-not-negative-number input-text"
+                                name="price_to"
+                                value=""
+                                id="priceto"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Distance From') ?>:</label>
+                        <div class="input-box">
+                            <input type="text" 
+                            name="dist_from" id="distancefrom" value="" 
+                            class="required-entry validate-not-negative-number" />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Distance To') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                class="required-entry validate-not-negative-number input-text"
+                                name="dist_to"
+                                value=""
+                                id="distanceto"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Shipping Method') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                class="required-entry input-text"
+                                name="shipping_method"
+                                value=""
+                                id="shippingmethod"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Price')." (".$currencySymbol.")" ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                class="required-entry input-text validate-not-negative-number"
+                                name="price"
+                                id="wkprice"
+                                value=""
+                            />
+                        </div>
+                    </li>
+                    <button class="button wk_mp_btn" 
+                    title="<?= /* @noEscape */ __('Update') ?>" 
+                    type="submit" id="save_butn">
+                        <span>
+                            <span><?= /* @noEscape */ __('Update') ?></span>
+                        </span>
+                    </button>
+                </ul>
+            </form>
+    </div>
+</div>
+<?php
+$formData = [
+    "addNewSetForm" => "#addDistshippingform",
+    "editRateForm" => "#editRate",
+    "wkPrice"        => "#wk_price",
+    'wkCloseWrap' => '.wk_close_wrapper',
+    'deleteSetRate' => '.mpship_delete',
+    'wkRateWrap' => '.wk_shipping_rate_wrapper',
+    'editUrl' => $block->getUrl(
+        'mpshipping/distanceset/update/',
+        ['_secure' => true]
+    ),
+    'deleteUrl' => $block->getUrl(
+        'mpshipping/distanceset/delete/',
+        ['_secure' => true]
+    )
+];
+$serializedFormData = $block->getJsonHelper()->jsonEncode($formData);
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Wkdistset": <?= /* @noEscape */ $serializedFormData; ?>
+    }
+}
+</script>

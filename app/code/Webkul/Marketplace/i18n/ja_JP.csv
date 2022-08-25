@@ -1,0 +1,123 @@
+"Marketplace Dashboard","ダッシュボード"
+"Seller Profile","プロフィール"
+"Create Attribute","商品属性"
+"My Products List","商品リスト"
+"My Transaction List","取引履歴"
+"Earnings","売上"
+"Edit PDF Header","PDFヘッダの編集"
+"Manage Assign Product","商品の割り当て"
+"Shipping Setting","配送設定"
+"Time Slots Configuration","指定可能な配送日時の設定"
+"Delivery Order History","配送履歴"
+"My Order History","注文履歴"
+
+"Ask Question to Admin","管理者に質問する"
+"Your Query","本文"
+"Week","週"
+"Sales By Locations","地域ごとの売上高"
+"Sales Stats","売上高"
+" Total Payout ","支払合計"
+" Remaining Amount ","残高"
+"Top Selling Products","一番売れている商品"
+"Top Selling Category","一番売れているカテゴリ"
+"Latest Order","最新の注文"
+"No Order Available","注文がありません"
+"Latest Comments & Reviews","最新のコメントとレビュー"
+"no comment & review available","まだコメントとレビューがありません"
+
+"Marketplace Edit Seller Profile","ショッププロフィール編集"
+"Edit Profile Information","編集内容"
+"Contact Number","電話番号"
+"Shop Title","ショップ名"
+"Company Banner","ショップバナー"
+"Company Logo","ショップロゴ"
+"Company Locality","会社の所在"
+"Company Description","会社概要"
+"Payment Details","支払方法詳細"
+"Save Payment","支払方法の保存"
+"View Profile","プロフィールを確認する"
+"View Collection","商品を確認する"
+
+"Manage Configurable Product's Attribute","商品属性の管理"
+"Create Attribute for Configurable Products","商品属性の設定"
+"Catalog Input Type","属性の表示方法"
+
+"Marketplace Add New Product","新規商品の追加"
+"Add New Product","新規商品追加"
+"Product Type","商品タイプ"
+
+"Product Category","商品カテゴリー"
+"Short Description","短い説明"
+"Allowed Product Qty on Product Purchase for Customer","1回に注文できる個数制限"
+"By default %1 qty will be allowed for customer to add in cart.","デフォルトでは一度に%1個までカートに入れられます。"
+"Product Images","商品画像"
+"Configurable products allow customers to choose options (Ex: shirt color).You need to create a simple product for each configuration (Ex: a product for each color).","商品属性を追加する商品は、それぞれの属性設定ごとにsimple productを作成する必要があります。(例 : シャツのカラー属性を設定した場合、色ごとに商品を作成する。)"
+
+"Marketplace Product List","商品リスト"
+"Product Status","商品ステータス"
+"No Product Available","登録された商品が存在しません."
+"Search by product name","商品名で検索"
+
+"Statement","売上",
+"Withdrawal","支払い金額",
+"Total Sale","売上合計",
+"Total Seller earning","合計売上額",
+"(base currency)","",
+"Commission","手数料",
+"Total Payout","支払合計"
+"Transaction" Id,"取引ID",
+
+"Period:","期間:",
+"Total Earning","売上合計額",
+"Total Discount Amount","割引合計額",
+"Admin Commission","管理者手数料",
+
+"Manage" Print PDF Header Info,"出力するPDFヘッダの編集"
+"Invoice" and Packing Slip Address/VAT/Tax Information,"請求書、納品先住所、税金関連情報"
+"Save" Information,"保存"
+
+"Marketplace Assign Product","商品割当"
+"Assign product is available for Simple, Configurable and Virtual type products.","商品割当は通常商品、属性付き商品、仮想商品で利用できます。"
+"Assign Product","商品割当"
+
+"Marketplace Assigned Product List","割当商品一覧"
+"No Product Found","商品が見つかりませんでした。"
+"Assign New Product","新規商品の割り当て"
+
+"Origin Address","配送設定"
+"Shipping Origin Address","配送基本住所"
+
+"Time Delivery Configuration","指定可能な配送日時の設定"
+"Create Delivery Time Slots","配送日時作成"
+"Minimum Required Time in Order Process","出荷にかかる日数"
+"Enter number of days, e.g: 5","数字で出荷までにかかる日数を入力。 例 : 5"
+"Add New Slot","配送日時の追加"
+
+"Time Delivery Orders","配送履歴"
+"Order List","注文リスト"
+"Delivery Date","配送日"
+"Order#","注文番号"
+"Selected Slot","配送日時"
+"We couldn't find any records. ","表示するレコードがありません。"
+
+"My Order History","注文履歴"
+"Download All Invoice Slip","全ての請求書をダウンロード"
+"Download All Shipping Slip","全ての配送伝票をダウンロード"
+"Order Id","注文ID"
+"Search by Order Id","注文IDで検索する"
+"No Order Available","注文がありません"
+
+"View and Edit Cart","カートをみる"
+
+"Seller","販売者"
+"Date/Day","配送希望日"
+"Delivery Time Slots","配送希望時間"
+
+"Time Slots","配送希望日時"
+"Date/Day","配送希望日"
+"Edit Product","商品を編集"
+"Your product has been successfully saved","商品情報を更新しました。"
+
+
+
+

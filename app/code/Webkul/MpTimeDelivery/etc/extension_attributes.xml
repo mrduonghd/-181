@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
+        <attribute code="seller_data" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\PaymentInterface">
+        <attribute code="seller_data" type="string"/>
+    </extension_attributes>
+    
+</config>

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Webkul\MpTimeDelivery\Api\Data\TimeslotConfigSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Webkul\MpTimeDelivery\Api\Data\TimeslotConfigInterface" type="Webkul\MpTimeDelivery\Model\TimeSlotConfig" />
+    <preference for="Webkul\MpTimeDelivery\Api\TimeslotConfigRepositoryInterface" type="Webkul\MpTimeDelivery\Model\TimeslotConfigRepository" />
+    <preference for="Webkul\MpTimeDelivery\Api\Data\TimeSlotOrderInterface" type="Webkul\MpTimeDelivery\Model\TimeSlotOrder" />
+    <preference for="Magento\Sales\Block\Order\Email\Items\Order\DefaultOrder" type="Webkul\MpTimeDelivery\Block\DefaultOrderNew" />
+
+    <type name="Webkul\Marketplace\Observer\SalesOrderPlaceAfterObserver">
+        <plugin name="time_slot_email_items" type="Webkul\MpTimeDelivery\Plugin\Marketplace\Observer\SalesOrderPlaceAfterObserver"/>
+    </type>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="time_slot_in_quote" type="Webkul\MpTimeDelivery\Plugin\Checkout\Model\ShippingInformationManagement" sortOrder="1"/>
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+		<plugin name="Webkul_MpTimeDelivery::timeSlotPaymentInformation" type="Webkul\MpTimeDelivery\Plugin\Checkout\Model\PaymentInformationManagement" sortOrder="1" />
+	</type>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+		<plugin name="Webkul_MpTimeDelivery::timeSlotGuestPaymentInformation" type="Webkul\MpTimeDelivery\Plugin\Checkout\Model\GuestPaymentInformationManagement" sortOrder="1" />
+	</type>
+    <type name="\Webkul\Marketplace\Helper\Data">
+        <plugin name="Webkul_MpTimeDelivery::updatedHelperDataFile" type="Webkul\MpTimeDelivery\Plugin\Marketplace\Helper\Data" sortOrder="200" />
+    </type>
+    
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\MpTimeDelivery\Api\Data\TimeslotConfigInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">marketplace_timeslot_config</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Webkul\MpTimeDelivery\Api\Data\TimeslotConfigInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\MpTimeDelivery\Api\Data\TimeSlotOrderInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">marketplace_timeslot_order</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Webkul\MpTimeDelivery\Api\Data\TimeSlotOrderInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Grid Load -->
+     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="delivery_time_slot_listing_data_source" xsi:type="string">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotConfig\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotConfig\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_timeslot_config</argument>
+            <argument name="eventPrefix" xsi:type="string">marketplace_timeslot_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">config_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotConfig</argument>
+        </arguments>
+    </type>
+    <virtualType name="TimeSlotConfigGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotConfig\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">MarketplaceTimeSlotGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="delivery_time_slot_order_listing_data_source" xsi:type="string">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotOrder\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotOrder\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_timeslot_order</argument>
+            <argument name="eventPrefix" xsi:type="string">marketplace_slot_order_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">order_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotOrder</argument>
+        </arguments>
+    </type>
+    <virtualType name="TimeSlotOrderGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\MpTimeDelivery\Model\ResourceModel\TimeSlotOrder\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">MarketplaceSlotOrderGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="MarketplaceSlotOrderGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+</config>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="attributes" xsi:type="array">
+                    <item name="class" xsi:type="string">Mpx\DisableEditProduct\Ui\DataProvider\Product\Form\Modifier\Attributes</item>
+                    <item name="sortOrder" xsi:type="number">1000</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+       <type name="Magento\Catalog\Block\Adminhtml\Product\Edit\Button\AddAttribute">
+               <plugin name="plugin_add_attributes_edit_product" type="Mpx\DisableEditProduct\Plugin\Product\Edit\Button\AddAttributePlugin" sortOrder="1" disabled="false"/>
+       </type>
+       <type name="Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Button\Save">
+               <plugin name="plugin_save_edit_product" type="Mpx\DisableEditProduct\Plugin\Product\Edit\Button\SavePlugin" sortOrder="1" disabled="false"/>
+       </type>
+      <preference for="Magento\Catalog\Ui\Component\Product\MassAction" type="Mpx\DisableEditProduct\Ui\Component\Product\MassAction" />
+
+</config>

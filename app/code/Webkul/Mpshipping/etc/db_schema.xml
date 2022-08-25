@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="marketplace_shippinglist" resource="default" engine="innodb" comment="Marketplace Table rate shipping table">
+    <column xsi:type="int" name="mpshipping_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Mpshipping Id"/>
+    <column xsi:type="int" name="website_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Website Id" />
+    <column xsi:type="text" name="dest_country_id" nullable="true" comment="Destination coutry ISO/2 or ISO/3 code"/>
+    <column xsi:type="text" name="dest_region_id" nullable="true" comment="Destination Region Id"/>
+    <column xsi:type="text" name="dest_zip" nullable="true" comment="Destination Post Code (Zip)"/>
+    <column xsi:type="text" name="dest_zip_to" nullable="true" comment="Destination Post Code (Zip)"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price"/>
+    <column xsi:type="decimal" name="weight_from" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Weight From"/>
+    <column xsi:type="decimal" name="weight_to" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Weight To"/>
+    <column xsi:type="int" name="partner_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Partner Id" />
+    <column xsi:type="int" name="shipping_method_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Shipping Method Id" />
+    <column xsi:type="text" name="is_range" nullable="true" comment="Is Range"/>
+    <column xsi:type="text" name="zipcode" nullable="true" comment="Destination Post Code(Alphanumeric)"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="mpshipping_id"/>
+    </constraint>
+  </table>
+  <table name="marketplace_shippinglist_method" resource="default" engine="innodb" comment="Marketplace Table rate shipping methods table">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="text" name="method_name" nullable="true" comment="Shipping Method name"/>
+    <column xsi:type="int" name="partner_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Partner Id" />
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="marketplace_tablerate_superset" resource="default" engine="innodb" comment="Marketplace Table rate shipping super set table">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="decimal" name="price_from" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price From"/>
+    <column xsi:type="decimal" name="price_to" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price To"/>
+    <column xsi:type="text" name="shipping_type" nullable="true" comment="Shipping Type"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price"/>
+    <column xsi:type="int" name="partner_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Partner Id" />
+    <column xsi:type="int" name="shipping_method_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Shipping Method Id" />
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="marketplace_tablerate_distanceset" resource="default" engine="innodb" comment="Marketplace Distance set shipping table">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="decimal" name="price_from" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price From"/>
+    <column xsi:type="decimal" name="price_to" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price To"/>
+    <column xsi:type="decimal" name="dist_from" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Distance From"/>
+    <column xsi:type="decimal" name="dist_to" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Distance To"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="true" nullable="false" default="0.0000" comment="Price"/>
+    <column xsi:type="int" name="partner_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Partner Id" />
+    <column xsi:type="int" name="shipping_method_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Shipping Method Id" />
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="marketplace_shipping_location" resource="default">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="int" name="partner_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Partner Id" />
+    <column xsi:type="text" name="location" nullable="true" comment="Location"/>
+    <column xsi:type="text" name="latitude" nullable="true" comment="Latitude"/>
+    <column xsi:type="text" name="longitude" nullable="true" comment="Longitude"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+</schema>

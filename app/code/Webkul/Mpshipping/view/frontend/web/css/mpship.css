@@ -1,0 +1,284 @@
+/**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+.wk_mp_list_table {
+    width: 100%;
+    border: 1px solid #CCCCCC;
+}
+.wk_mp_list_table thead span{
+    font-weight: bold;
+}
+.mpship_edit, .mpship_delete{
+    cursor: pointer;
+}
+.wk_shipping_rate_wrapper{
+    background: none repeat scroll 0 0 rgba(13, 11, 11, 0.72);
+    display: none;
+    height: 100%;
+    left: 0;
+    position:fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.wk_shipping_rate_wrapper .wk_mp_design{
+    position:relative;
+    top: 10px;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 35em;
+    height: 40em;
+    overflow: auto;
+    overflow-x:hidden;
+    border: 2px solid #7f8c8d;
+    background: none repeat scroll 0 0 #fff;
+    padding:7px;
+    z-index: 999999999999;
+}
+.wk_shipping_rate_wrapper .wk_mp_design .input-box{
+    overflow: hidden !important;
+}
+.wk_shipping_rate_wrapper .wk_mp_design .block{
+    margin-bottom: 30px !important;
+}
+.wk_shipping_rate_wrapper .wk_mp_design .form-list li {
+    margin-bottom: 10px;
+}
+.wk_shipping_rate_wrapper .wk_mp_design .wk_close_wrapper{
+     height: 24px;
+    padding: 3px;
+    width: 23px;
+    text-align: center;
+    border-radius:5px;
+    float: right;
+    font-weight: bold;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+.wk_shipping_rate_wrapper .wk_mp_shippingset{
+  height: 30em !important;
+}
+.wk_mp_design .block-account {
+    display: block;
+    margin-top: 10px;
+    width: 50%;
+}
+.wk_mp_design .form-list label {
+    color: #000;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 0;
+}
+#uploadshippingform li{
+    list-style: none;
+}
+#uploadshippingform ul{
+    padding: 0px;
+    margin-top: 10px;
+}
+.wk_mp_design .form-list {
+    margin: -16px auto;
+    padding: 0px;
+}
+.wk_mp_design .form-list li {
+    list-style: none;
+}
+.shipping_method_outer {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.shipping_method_head {
+    height: 40px;
+    width: 100%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.shipping_method_head>label, .shipping_rate>label.label{
+    display: inline-block;
+    padding: 10px;
+    font-weight: 600;
+    line-height: 1.1;
+    font-size: 1.8rem;
+}
+.shipping_method_head label{
+    color: black;
+}
+.shipping_method_head span{
+    float: right;
+    padding: 10px;
+}
+.shipping_rate .addlabel {
+    float: right;
+    color: #247FC6;
+    font-weight: 400;
+    line-height: 1.1;
+    font-size: 1.6rem;
+    padding: 10px;
+    cursor: pointer;
+}
+.wk_shipping_rate_wrapper label.colortheme{
+    color: #247FC6;
+}
+.wkplussign {
+    display: inline-block;
+    width: 20px;
+    border: 2px #247FC6 dotted;
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.colortheme{
+    color: #247FC6;
+}
+.wk-tooltip{
+    width: 30px;
+    height: 30px;
+    background-color: #247FC6;
+    float: right;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.1;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+.wk-tooltip:before{
+    content: '?';
+}
+.wk-tooltip p{
+    display: none;
+    height: auto;
+    width: 60%;
+    border-radius: 3px;
+    color: #65666A;
+    background-color: #D2E3F3;
+    position: absolute;
+    right: 5px;
+    font-size: small;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 5px;
+    line-height: 1.4em;
+}
+.wk-tooltip p:before{
+    content: '';
+    height: 0px;
+    width: 0px;
+    border: 6px solid transparent;
+    border-bottom-color: #D2E3F3;
+    position: absolute;
+    top: -12px;
+    right: 10px;
+}
+.wk-tooltip:hover p {
+    display: block;
+}
+.add_shipping_form{
+    display: none;
+    background-color: #F1F1F1;
+    padding: 30px;
+}
+.add_shipping_form input[name='shipping_method']
+{
+    width: 300px;
+}
+.add_shipping_form>label{
+    float: left;
+    padding: 10px;
+}
+.display_inline-block{
+    display: inline-block;
+}
+.wk_sugestion_list{
+    display: none;
+    width: 300px;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #C2C2C2;
+    box-sizing: border-box;
+    max-height: 180px;
+    overflow: auto;
+    position: absolut7pxe;
+}
+.wk_sugestion_list>span{
+    margin: 0px!important;
+    background-color: white;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+}
+.wk_sugestion_list>span:hover{
+    background-color: #247FC6;
+    color: white;
+}
+.wk_sugestion_list>span:first-child{
+    background-color: #F4F4F4;
+    color: #B6B6B6;
+    font-family: monospace;
+    font-weight: 900;
+}
+.wk_ship_method_delete i{
+    color: black;
+}
+.wk_ship_method_delete, .wk_ship_method_delete label{
+    cursor: pointer;
+}
+.wk_mpshippingset{
+    margin-top: 30px;
+}
+.mpshipping
+{
+    position: relative;
+}
+.mpshipping ul.nav
+{
+    display:none;
+    top: 0px;
+    position: absolute;
+    background-color: #f5f5f5;
+    margin-left: 35%;
+    border: 1px solid rgb(204, 204, 204);
+    z-index: 9999;
+}
+.mpshipping:hover ul.nav
+{
+    display:block;
+}
+.block-collapsible-nav .mpshipping.current .item a {
+    font-weight: normal;
+    border-left:none;
+}
+@media (max-width: 500px) {
+  #wk-mp-tr-heading th {
+    padding: 0px 0px;
+    font-size: 7px;
+  }
+  .wk-row-view td {
+    padding: 0px;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 600px) {
+    #wk-mp-tr-heading th {
+      padding: 0px 0px;
+      font-size: 12px;
+    }
+    .wk-row-view td {
+      padding: 0px;
+    }
+}

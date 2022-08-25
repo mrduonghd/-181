@@ -1,0 +1,28 @@
+{
+    "paypal_checkout_info": {
+        "column": {
+            "id": true,
+            "order_increment_id": true,
+            "paypal_authorization_id": true,
+            "paypal_authorization_period": true,
+            "paypal_honor_period": true,
+            "paypal_status": true,
+            "paypal_authorized_at": true,
+            "paypal_authority_extended_at": true,
+            "paypal_captured_at": true,
+            "all_shipped_at": true,
+            "create_at": true,
+            "update_at": true,
+            "order_id": true
+        },
+        "index": {
+            "PAYPAL_AUTHORIZATION_INFO_ORDER_INCREMENT_ID": true,
+            "PAYPAL_CHECKOUT_INFO_AUTHORIZATION_PERIOD": true,
+            "PAYPAL_CHECKOUT_INFO_HONOR_PERIOD": true,
+            "PAYPAL_CHECKOUT_INFO_PAYPAL_STATUS":true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

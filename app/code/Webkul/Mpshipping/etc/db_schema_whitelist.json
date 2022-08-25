@@ -1,0 +1,73 @@
+{
+    "marketplace_shippinglist": {
+        "column": {
+            "mpshipping_id": true,
+            "website_id": true,
+            "dest_country_id": true,
+            "dest_region_id": true,
+            "dest_zip": true,
+            "dest_zip_to": true,
+            "price": true,
+            "weight_from": true,
+            "weight_to": true,
+            "partner_id": true,
+            "shipping_method_id": true,
+            "is_range": true,
+            "zipcode": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_shippinglist_method": {
+        "column": {
+            "entity_id": true,
+            "method_name": true,
+            "partner_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_tablerate_superset": {
+        "column": {
+            "entity_id": true,
+            "price_from": true,
+            "price_to": true,
+            "shipping_type": true,
+            "price": true,
+            "partner_id": true,
+            "shipping_method_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_tablerate_distanceset": {
+        "column": {
+            "entity_id": true,
+            "price_from": true,
+            "price_to": true,
+            "dist_from": true,
+            "dist_to": true,
+            "price": true,
+            "partner_id": true,
+            "shipping_method_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "marketplace_shipping_location": {
+        "column": {
+            "entity_id": true,
+            "partner_id": true,
+            "location": true,
+            "latitude": true,
+            "longitude": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

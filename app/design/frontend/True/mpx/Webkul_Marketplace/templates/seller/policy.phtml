@@ -1,0 +1,7 @@
+<?php
+$helper = $this->helper(\Webkul\Marketplace\Helper\Data::class);
+$partner = $block->getProfileDetail();
+?>
+<?php if ($partner['shop_url'] && $helper->getSellerPolicyApproval()) { ?>
+    <div class="wk-mp-policy-block-data"><?= /* @noEscape */ $partner['privacy_policy'];?></div>
+<?php } ?>

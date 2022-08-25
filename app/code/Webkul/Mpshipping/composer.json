@@ -1,0 +1,20 @@
+{
+    "name": "webkul/marketplace-base-mpshipping",
+    "description": "Magento2 Marketplace Table Rate Shipping Module",
+    "require": {
+        "webkul/module-marketplace": "3.0.*"
+    },
+    "type": "magento2-module",
+    "version": "3.0.1",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\Mpshipping\\": ""
+        }
+    }
+}

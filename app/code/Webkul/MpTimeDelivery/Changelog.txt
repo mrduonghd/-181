@@ -1,0 +1,27 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 3.0.0 --------------------------------------
+	+ Version Upgrade for Magento 2.3.*.
+
+-------------------------------- Version 2.2.0 --------------------------------------
+	+ Version Upgrade for Magento 2.2.*.
+	
+-------------------------------- Version 2.1.0 --------------------------------------
+	+ Compatible with Magento 2.3.x and Marketplace 2.2.* version.
+	
+-------------------------------- Version 2.0.1 --------------------------------------
+	+ Compatible with Magento 2.2.x and Marketplace 2.1.* version.
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+	+ Allow Sellers to set Delivery Time Slots for buyers.
+	+ Sellers can set number of orders process per time slot.
+	+ Buyer can select delivery time according to his/her choice on checkout page.
+	+ Admin can allow the days to display on checkout page.
+	+ Admin can set the minimum number of days interval for process order.
+	+ Admin can set number of days to display on checkout.
+	+ Admin can set error message if no time slots available.
+	+ Admin can create default delivery time slots.

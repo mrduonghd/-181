@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <columns name="earnings_columns">
+        <column name="total_seller_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Total Earning</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="total_commission" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Admin Commission</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </column>
+    </columns>
+</listing>

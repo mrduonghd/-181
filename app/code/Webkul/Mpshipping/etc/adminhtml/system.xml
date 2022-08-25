@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="webkulshipping" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Webkul Marketplace Table Rate Shipping Detail</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <comment>Method Title(This will visible at frontend)</comment>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="allowadmin" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>If seller rates are not available</label>
+                    <source_model>Webkul\Mpshipping\Model\Config\Source\Allowadmin</source_model>
+                </field>
+                <field id="distance" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled Distance-wise Shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="google_api_key" translate="label" type="obscure" sortOrder="9" showInDefault="1" >
+                    <label>Google API Key</label>
+                    <validate>validate-no-html-tags required-entry</validate>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="distance">1</field>
+                    </depends>
+                </field>
+                <field id="location" showInWebsite="1" translate="label comment" sortOrder="10" type="text" showInDefault="1">
+                    <comment>Please enter Google Map Api and save to make it work </comment>
+                    <label>Admin Location</label>
+                    <depends>
+                        <field id="distance">1</field>
+                    </depends>
+                </field>
+                <field id="latitude" showInWebsite="1" translate="label comment" sortOrder="11" type="text" showInDefault="1">
+                    <label>Admin Latitude</label>
+                    <depends>
+                        <field id="distance">1</field>
+                    </depends>
+                </field>
+                <field id="longitude" showInWebsite="1" translate="label comment" sortOrder="12" type="text" showInDefault="1">
+                    <label>Admin Longitude</label>
+                    <depends>
+                        <field id="distance">1</field>
+                    </depends>
+                </field>
+                <field id="distance_unit" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Distance Unit</label>
+                    <source_model>Webkul\Mpshipping\Model\Config\Source\UnitType</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

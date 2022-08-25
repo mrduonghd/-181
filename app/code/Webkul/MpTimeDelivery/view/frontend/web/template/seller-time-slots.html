@@ -1,0 +1,74 @@
+<!--
+/**
+* Webkul Software
+*
+* @category Webkul
+* @package Webkul_MpTimeDelivery
+* @author Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+ -->
+<!--ko if: isEnabled == true -->
+<div class="slots-wrapper">
+	<div class="slots-content">
+		<!--ko foreach: { data: getSellerSlotData(), as: 'data'}-->
+		<div class="seller-name">
+			<span data-bind="i18n: 'Seller:'"></span>
+			<span data-bind="text: data.name"></span>
+		</div>
+		<!--ko if: Object.keys(data.slots).length > 0 -->
+		<table class="table time-slot">
+			<thead>
+				<tr>
+					<th data-bind="i18n: 'Date/Day'" style="text-align:center"></th>
+					<th data-bind="i18n: 'Delivery Time Slots'"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--ko foreach: { data: Object.keys($parent.getSortedSlots(data.slots)), as: 'key' } -->
+				<!-- ko if: $parents[1].checkDay(key, data.seller_start_date) -->
+				<tr class="slot-row">
+					<td class="first-child">
+						<span class="day-time" data-bind="text: $parents[1].getDate(data.id , key)"></span>
+					</td>
+					<td>
+						<!--ko foreach: { data: data.slots[key], as: 'time' } -->
+						
+						<div class="slot" data-bind="style: {
+											background: time.is_available ==0 || $parents[2].checkTime(time.slot, key) === false ? 'rgb(255, 160, 160)':'',
+										},
+										css: time.is_available == 0 || $parents[2].checkTime(time.slot, key) === false ? 'disabled':$parents[2].generateClass(data.name),
+										click: $parents[2].isSelected.bind($data, $parents[2], $parents[1]),
+										attr:{'seller-group':$parents[2].generateClass(data.name)}">
+							<!-- ko if: $parents[2].checkTime(time.slot, key) === true -->
+							<input class="radio" type="checkbox" , data-bind="
+																enable: time.is_available,
+																attr: {
+																	'value': time.slot,
+																		'id': time.slot_id,
+																		'name':'id_'+data.id,
+																		'data-date': $parents[2].getDate(data.id , key)
+																},
+																click: $parents[2].selectTimeSlot.bind($data, $parents[2], $parents[1])" class="radio" />
+							<!-- /ko -->
+							<label data-bind="text: time.slot"></label>
+						</div>
+
+						<!-- /ko -->
+					</td>
+
+				</tr>
+				<!-- /ko -->
+				<!-- /ko -->
+			</tbody>
+		</table>
+		<!-- /ko -->
+		<!-- ko ifnot: Object.keys(data.slots).length > 0 -->
+		<div class="no-slots-block"><span data-bind="text: data.message"></span></div>
+		<!-- /ko -->
+		<!-- /ko -->
+	</div>
+</div>
+<br/>
+<!-- /ko -->

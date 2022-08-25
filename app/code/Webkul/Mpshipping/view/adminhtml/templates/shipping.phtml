@@ -1,0 +1,24 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $data = [
+            "sellerWarning" => __('Please Select Seller')
+        ];
+    $data = $block->getJsonHelper()->jsonEncode($data);
+    ?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "Webkul_Mpshipping/js/shipping": <?= /* @noEscape */ $data ?>
+        }
+    }
+</script>

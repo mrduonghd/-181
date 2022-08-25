@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Marketplace
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\Marketplace\Block\Adminhtml\Customer\Edit\Tabs">
+       <plugin name="Mpx_Marketplace::RemoveVatCustomer"
+               type="Mpx\Marketplace\Plugin\Customer\RemoveVatCustomer"
+               sortOrder="1" />
+    </type>
+     <preference for="Webkul\Marketplace\Model\ResourceModel\Sellerearning\FrontGrid\Collection" type="Mpx\Marketplace\Model\ResourceModel\Sellerearning\FrontGrid\Collection" />
+     <preference for="Webkul\Marketplace\Ui\DataProvider\CustomerHistoryDataProvider" type="Mpx\Marketplace\Ui\DataProvider\CustomerHistoryDataProvider" />
+     <preference for="Webkul\Marketplace\Block\Order\Totals" type="Mpx\Marketplace\Block\Order\Totals" />
+     <preference for="Webkul\Marketplace\Block\Order\Invoice\Totals" type="Mpx\Marketplace\Block\Order\Invoice\Totals" />
+    <type name="Webkul\Marketplace\Controller\Product\Save">
+        <plugin name="Mpx_Marketplace::ValidateDecimal"
+                type="Mpx\Marketplace\Plugin\Product\BeforeSaveProduct"
+                sortOrder="1" />
+    </type>
+    <preference for="Webkul\Marketplace\Ui\DataProvider\OrdersHistoryDataProvider" type="Mpx\Marketplace\Ui\DataProvider\OrdersHistoryDataProvider" />
+    <preference for="Webkul\Marketplace\Ui\DataProvider\LatestOrdersDataProvider" type="Mpx\Marketplace\Ui\DataProvider\LatestOrdersDataProvider" />
+    <preference for="Webkul\Marketplace\Ui\Component\Listing\Columns\Frontend\OrderHistoryProDetails" type="Mpx\Marketplace\Ui\Component\Listing\Columns\Frontend\OrderHistoryProDetails" />
+    <preference for="Webkul\Marketplace\Model\ResourceModel\Saleslist\Collection" type="Mpx\Marketplace\Model\ResourceModel\Saleslist\Collection" />
+    <preference for="Webkul\Marketplace\Controller\Order\Shipment" type="Mpx\Marketplace\Controller\Order\Shipment" />
+    <preference for="Webkul\Marketplace\Model\Order\Pdf\Shipment" type="Mpx\Marketplace\Model\Order\Pdf\Shipment" />
+    <preference for="Webkul\Marketplace\Model\Plugin\Order\ShipmentPdfHeader" type="Mpx\Marketplace\Model\Plugin\Order\ShipmentPdfHeader" />
+    <type name="Webkul\Marketplace\Controller\Product\Verifysku">
+        <plugin name="format_sku_before_check_sku_exist"
+                type="Mpx\Marketplace\Plugin\Product\Verifysku"
+                sortOrder="1" />
+    </type>
+    <preference for="Webkul\Marketplace\Controller\Product\Builder" type="Mpx\Marketplace\Controller\Product\Builder" />
+    <preference for="Webkul\Marketplace\Controller\Product\SaveProduct" type="Mpx\Marketplace\Controller\Product\SaveProduct" />
+    <type name="Magento\Catalog\Model\ProductRepository">
+        <plugin name="Mpx_Marketplace::AfterProductRepository"
+                type="Mpx\Marketplace\Plugin\Product\BeforeGetProductRepository"
+                sortOrder="1" />
+        </type>
+    <preference for="Webkul\Marketplace\Block\Order\View" type="Mpx\Marketplace\Block\Order\View" />
+    <preference for="Webkul\Marketplace\Controller\Order\Shipment\Tracking\Add" type="Mpx\Marketplace\Controller\Order\Shipment\Tracking\Add" />
+    <preference for="Webkul\Marketplace\Controller\Order\Shipment\View" type="Mpx\Marketplace\Controller\Order\Shipment\View" />
+    <preference for="Webkul\Marketplace\Controller\Order\Shipment\Printpdf" type="Mpx\Marketplace\Controller\Order\Shipment\Printpdf" />
+    <preference for="Webkul\Marketplace\Block\Policy" type="Mpx\Marketplace\Block\Policy" />
+    <preference for="Webkul\Marketplace\Controller\Order\Shipment\Tracking\Delete" type="Mpx\Marketplace\Controller\Order\Shipment\Tracking\Delete" />
+    <preference for="Webkul\Marketplace\Observer\AdminhtmlCustomerSaveAfterObserver" type="Mpx\Marketplace\Observer\AdminhtmlCustomerSaveAfterObserver" />
+    <preference for="Webkul\Marketplace\Block\Adminhtml\Customer\Edit\AddSellerTab" type="Mpx\Marketplace\Block\Adminhtml\Customer\Edit\AddSellerTab" />
+
+</config>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_TimeSlotDelivery
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ 
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="marketplace_timeslot_config" resource="default" engine="innodb" comment="Marketplace Time Slot">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="int" name="seller_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Seller ID"/>
+    <column xsi:type="text" name="delivery_day" nullable="true" comment="Order Delivery Day"/>
+    <column xsi:type="text" name="start_time" nullable="true" comment="Order Delivery Start Time"/>
+    <column xsi:type="text" name="end_time" nullable="true" comment="Order Delivery End Time"/>
+    <column xsi:type="int" name="order_count" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Order Count"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="marketplace_timeslot_order" resource="default" engine="innodb" comment="Marketplace Order Time Slot">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="int" name="seller_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Seller ID"/>
+    <column xsi:type="int" name="slot_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Slot ID"/>
+    <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Slot ID"/>
+    <column xsi:type="timestamp" name="selected_date" on_update="false" nullable="true" comment="Selected Slot Date'"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="quote_item" resource="default" comment="Order Item">
+    <column xsi:type="text" name="delivery_date" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_time" nullable="false" comment="Delivery Time"/>
+  </table>
+  <table name="sales_order_item" resource="default" comment="Sales Order Item">
+    <column xsi:type="text" name="delivery_date" nullable="false" comment="Delivery Date"/>
+    <column xsi:type="text" name="delivery_time" nullable="false" comment="Delivery Time"/>
+  </table>
+</schema>

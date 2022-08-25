@@ -1,0 +1,99 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+$createBlock = $block->getLayout()->createBlock(\Webkul\Mpshipping\Block\Mpshipping\Mpshipping::class);
+$helper = $createBlock->getMpHelperData();
+$mpShippingHelper = $createBlock->getHelperData();
+$magentoCurrentUrl = $block->getCurrentUrl();
+$isSellerGroup = $helper->isSellerGroupModuleInstalled();
+$locationUrl = $block->getUrl(
+    'mpshipping/seller/location',
+    ['_secure' => $block->getIsSecure()]
+);
+$distanceRuleUrl = $block->getUrl(
+    'mpshipping/distanceset/view',
+    ['_secure' => $block->getIsSecure()]
+);
+$shippingSetUrl = $block->getUrl(
+    'mpshipping/shippingset/view',
+    ['_secure' => $block->getIsSecure()]
+);
+$shippingRuleUrl = $block->getUrl(
+    'mpshipping/shipping/view',
+    ['_secure' => $block->getIsSecure()]
+);
+?>
+<?php
+if ($helper->isSeller() &&
+( (($isSellerGroup &&
+$helper->isAllowedAction('mpshipping/shipping/view')) ||
+!$isSellerGroup) ||
+(($isSellerGroup &&
+$helper->isAllowedAction('mpshipping/shippingset/view')) ||
+!$isSellerGroup))) { ?>
+<li class="level-0 <?= /* @noEscape */ strpos($magentoCurrentUrl, 'mpshipping')? "current active":"";?>">
+    <a href="#" onclick="return false;" class="">
+        <span><?= /* @noEscape */ __('Table Rate Shipping')?></span>
+    </a>
+    <div class="wk-mp-submenu">
+        <strong class="wk-mp-submenu-title"><?= /* @noEscape */  __('Table Rate Shipping')?></strong>
+        <a href="#" class="action-close _close" data-role="wk-mp-close-submenu"></a>
+        <ul>
+            <li data-ui-id="menu-webkul-marketplace-menu" class="item-menu  parent  level-1">
+                <strong class="wk-mp-submenu-group-title">
+                    <span><?= /* @noEscape */  __('Menu')?></span>
+                </strong>
+                <div class="wk-mp-submenu">
+                    <ul>
+                        <?php if (($isSellerGroup &&
+                        $helper->isAllowedAction('mpshipping/shipping/view')) ||
+                                            !$isSellerGroup) { ?>
+                            <li class="level-2">
+                                <a href="<?= $block->escapeUrl($shippingRuleUrl); ?>">
+                                    <span><?= /* @noEscape */ __('Manage Shipping') ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (($isSellerGroup &&
+                        $helper->isAllowedAction('mpshipping/shippingset/view')) ||
+                        !$isSellerGroup) { ?>
+                            <li class="level-2">
+                                <a href="<?= $block->escapeUrl($shippingSetUrl); ?>">
+                                    <span><?= /* @noEscape */ __('Manage Shipping Superset') ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($mpShippingHelper->getDistanceShippingStatus() &&
+                        (($isSellerGroup &&
+                        $helper->isAllowedAction('mpshipping/distanceset/view')) ||
+                        !$isSellerGroup)) { ?>
+                            <li class="level-2">
+                                <a href="<?= $block->escapeUrl($distanceRuleUrl); ?>">
+                                    <span><?= /* @noEscape */ __('Shipping By Distance') ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($mpShippingHelper->getDistanceShippingStatus() &&
+                        (($isSellerGroup &&
+                        $helper->isAllowedAction('mpshipping/seller/location')) ||
+                        !$isSellerGroup)) { ?>
+                            <li class="level-2">
+                                <a href="<?= $block->escapeUrl($locationUrl); ?>">
+                                    <span><?= /* @noEscape */ __('Set Location') ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</li>
+<?php }?>

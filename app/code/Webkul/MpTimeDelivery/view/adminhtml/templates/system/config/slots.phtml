@@ -1,0 +1,39 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+?>
+<?php /** @var $block \Webkul\MpTimeDelivery\Block\Adminhtml\Options */ ?>
+
+    <div class="fieldset-wrapper" 
+        id="time-delivery-options-wrapper" 
+        data-block="time-delivery-options"
+    >
+        <div class="fieldset-wrapper-content" 
+            id="product-custom-options-content" 
+            data-role="product-custom-options-content"
+        >
+            <fieldset class="fieldset">
+                <div id="options_container" class="">
+                    <div id="product_options_container_top"></div>
+                    <?= $block->getOptionsBoxHtml() ?>
+                </div>
+
+                <div class="actions">
+                    <div class="primary">
+                        <button type="button" id="add_new_defined_slot" class="save primary" title="Save">
+                            <span>
+                                <?= $block->escapeHtml(__('Add New Slot')); ?>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>

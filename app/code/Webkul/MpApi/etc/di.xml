@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MpApi
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Webkul\MpApi\Api\SellerManagementInterface"
+                type="Webkul\MpApi\Model\Seller\SellerManagement" />
+    <preference for="Webkul\MpApi\Api\AdminManagementInterface"
+                type="Webkul\MpApi\Model\Admin\AdminManagement" />
+
+    <preference for="Webkul\MpApi\Api\Data\ResponseInterface"
+                type="Webkul\MpApi\Model\Response" />
+    <preference for="Webkul\MpApi\Api\SaleslistInterface" type="Webkul\MpApi\Model\SaleslistRepositry"/>
+    <preference for="Webkul\MpApi\Api\Data\SellerResultsInterface" type="Webkul\MpApi\Model\ResourceModel\Saleslist\Collection"/>
+    <preference for="Webkul\MpApi\Api\AdminSellerManagementInterface" type="Webkul\MpApi\Model\Admin\AdminSellerRepositry"/>
+</config>

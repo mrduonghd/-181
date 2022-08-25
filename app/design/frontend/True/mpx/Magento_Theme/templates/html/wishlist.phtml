@@ -1,0 +1,13 @@
+<?php
+use Magento\Theme\Block\Html\Topmenu;
+
+// @codingStandardsIgnoreFile
+
+/** @var Topmenu $block */
+
+?>
+<div class="header-mpx-wishlist">
+    <a href="<?= $block->escapeUrl($block->getUrl('wishlist/index/index')) ?>">
+        <?= $block->escapeHtml(__('Wishlist')) ?>
+    </a>
+</div>

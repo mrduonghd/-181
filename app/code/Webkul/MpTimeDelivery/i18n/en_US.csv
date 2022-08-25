@@ -1,0 +1,75 @@
+"Time Delivery Configuration","Time Delivery Configuration"
+"Total %1 time slot(s) saved successfully.","Total %1 time slot(s) saved successfully."
+"Can not save the time slots","Can not save the time slots"
+"Delivery Orders","Delivery Orders"
+"Delivery Slots","Delivery Slots"
+"Time Delivery Orders","Time Delivery Orders"
+Sunday,Sunday
+Monday,Monday
+Tuesday,Tuesday
+Wednesday,Wednesday
+Thursday,Thursday
+Friday,Friday
+Saturday,Saturday
+"'0' .","'0' ."
+Admin,Admin
+"Time Slot with id ""%1"" does not exist.","Time Slot with id ""%1"" does not exist."
+"Please add delivery time slots!","Please add delivery time slots!"
+"Delivery Date/Day: ","Delivery Date/Day: "
+"Delivery Time: ","Delivery Time: "
+Order,Order
+"View Order","View Order"
+"Select Day","Select Day"
+"Start Time","Start Time"
+"End Time","End Time"
+Quotas,Quotas
+Delete,Delete
+"Add New Slot","Add New Slot"
+"* Required Fields","* Required Fields"
+"Create Delivery Time Slots","Create Delivery Time Slots"
+Save,Save
+"Minimum Required Time in Order Process","Minimum Required Time in Order Process"
+"Enter number of days, e.g: 5","Enter number of days, e.g: 5"
+SKU,SKU
+"Gift Message","Gift Message"
+From:,From:
+To:,To:
+Message:,Message:
+"Time Slot Delivery","Time Slot Delivery"
+Menu,Menu
+"Time Slots Configuration","Time Slots Configuration"
+"Delivery Order History","Delivery Order History"
+"Order List","Order List"
+"Delivery Date","Delivery Date"
+Order#,Order#
+"From: ","From: "
+"To: ","To: "
+"Search by order id","Search by order id"
+Submit,Submit
+"Selected Slot","Selected Slot"
+"Purchased On","Purchased On"
+Back,Back
+Seller:,Seller:
+Date/Day,Date/Day
+"Delivery Time Slots","Delivery Time Slots"
+"Time Slots","Time Slots"
+Seller,Seller
+Time,Time
+"Select day for delivery.","Select day for delivery."
+"Invalid Time Interval.","Invalid Time Interval."
+"Delivery Time Menu","Delivery Time Menu"
+Webkul,Webkul
+"Delivery Time Configuration","Delivery Time Configuration"
+"Delivery Time Setting","Delivery Time Setting"
+Enabled,Enabled
+"Allowed Days","Allowed Days"
+"Display Total Days","Display Total Days"
+"Enter number of days, e.g: 7","Enter number of days, e.g: 7"
+"Enter number of days, e.g: 5. And 'zero' will consider as current day.","Enter number of days, e.g: 5. And 'zero' will consider as current day."
+"Error Message if Time Slots are not available.","Error Message if Time Slots are not available."
+"Default Delivery Time Slots","Default Delivery Time Slots"
+"Seller Name","Seller Name"
+"Delivery Day","Delivery Day"
+"Allowed Orders","Allowed Orders"
+"Delivery Time From","Delivery Time From"
+"Delivery Time To","Delivery Time To"

@@ -1,0 +1,80 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $mphelper = $block->getMpHelperObject();
+    $helper = $block->getHelperObject();
+    $isPartner = $mphelper->isSeller();
+    $isSellerGroup = $mphelper->isSellerGroupModuleInstalled();
+    $magentoCurrentUrl = $block->getCurrentUrl();
+?>
+<?php if ($isPartner && $helper->getConfigData('active')): ?>
+    <?php if (($isSellerGroup && $mphelper->isAllowedAction('timedelivery/account/index')) || !$isSellerGroup): ?>
+        <?php
+        $currentUrl = explode("/", $magentoCurrentUrl);
+        if (in_array("timedelivery", $currentUrl)) {
+            $currentClass = "current active";
+        } else {
+            $currentClass = "";
+        }
+        ?>
+
+        <li id="wk-mp-menu-qa" 
+            class="wk-mp-item-timeslot level-0 <?= $block->escapeHtml($currentClass)?>" 
+            id="wk-mp-menu-timeslots"
+        >
+            <a href="#" onclick="return false;" class="">
+                <span><?= $block->escapeHtml(__('Time Slot Delivery'))?></span>
+            </a>
+            <div class="wk-mp-submenu">
+                <strong class="wk-mp-submenu-title"><?= $block->escapeHtml(__('Time Slot Delivery'))?></strong>
+                <a href="#" class="action-close _close" data-role="wk-mp-close-submenu"></a>
+                <ul>
+                    <li data-ui-id="menu-webkul-massupload-menu" class="item-menu parent level-1">
+                        <strong class="wk-mp-submenu-group-title">
+                            <span><?= $block->escapeHtml(__('Menu'))?></span>
+                        </strong>
+                        <div class="wk-mp-submenu">
+                            <ul>
+                                <?php
+                                if (($isSellerGroup && $mphelper->isAllowedAction('timedelivery/account/index')) ||
+                                    !$isSellerGroup
+                                ) { ?>
+                                    <li class="level-2">
+                                        <a href="<?= $block->escapeUrl($block->getUrl(
+                                            'timedelivery/account/index',
+                                            ['_secure' => $block->getRequest()->isSecure()]
+                                        )); ?>"
+                                    >
+                                            <span><?= $block->escapeHtml(__('Time Slots Configuration')) ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php
+                                if (($isSellerGroup && $mphelper->isAllowedAction('timedelivery/seller/orders')) ||
+                                    !$isSellerGroup) { ?>
+                                    <li class="level-2">
+                                        <a href="<?= $block->escapeUrl($block->getUrl(
+                                            'timedelivery/seller/orders',
+                                            ['_secure' => $block->getRequest()->isSecure()]
+                                        )); ?>">
+                                            <span><?= $block->escapeHtml(__('Delivery Order History')) ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,3 @@
+country_code,region_id,zip,zip_to,price,weight_from,weight_to,shipping_method,numeric_zipcode,alphanumeric_zipcode
+"US","*","90001","90100","10","1","100","Standard Shipping",yes,*
+"IN","*","201301","201305","10","1","100","One Day Delivery",yes,*

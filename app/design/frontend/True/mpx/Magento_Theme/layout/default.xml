@@ -1,0 +1,23 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                <argument name="logo_width" xsi:type="number">100</argument>
+                <argument name="logo_height" xsi:type="number">100</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header.panel.wrapper" remove="true" />
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="header-menu1" template="Magento_Theme::html/headermpx.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="header-menu-wishlist" template="Magento_Theme::html/wishlist.phtml" before="top.search"/>
+        </referenceContainer>
+        <referenceBlock name="privacy-policy-link" remove="true"/>
+        <referenceBlock name="catalog-search-advanced-link" remove="true"/>
+        <referenceBlock name="search-term-popular-link" remove="true"/>
+        <referenceBlock name="contact-us-link" remove="true"/>
+        <referenceBlock name="sales-guest-form-link" remove="true"/>
+        <referenceBlock name="amazon.pay.password.reset" remove="true"/>
+    </body>
+</page>

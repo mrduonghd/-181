@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="marketplace-top-link" remove="true"/>
+        <referenceBlock name="marketplace-link" remove="true"/>
+        <referenceBlock name="marketplace_sellerprofile_rating" remove="true"/>
+    </body>
+</page>

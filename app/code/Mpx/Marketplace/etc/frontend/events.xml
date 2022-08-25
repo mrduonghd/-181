@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_marketplace_account_becomeseller">
+        <observer name="mpx_seller_model_save_before" instance="Mpx\Marketplace\Observer\Predispatch\BecomeSeller" />
+    </event>
+    <event name="controller_action_predispatch_marketplace_account_earning">
+        <observer name="mpx_account_earning_controller_before" instance="Mpx\Marketplace\Observer\Account\NoRoute" />
+    </event>
+    <event name="controller_action_predispatch_marketplace_account_review">
+        <observer name="mpx_account_review_controller_before" instance="Mpx\Marketplace\Observer\Account\NoRoute" />
+    </event>
+    <event name="controller_action_predispatch_sales_order_invoice">
+        <observer name="mpx_order_invoice_controller_before" instance="Mpx\Marketplace\Observer\Order\NoRoute" />
+    </event>
+    <event name="controller_action_predispatch_marketplace_order_shipment_email">
+        <observer name="mpx_account_review_controller_before" instance="Mpx\Marketplace\Observer\Account\NoRoute" />
+    </event>
+    <event name="controller_action_predispatch_marketplace_order_cancel">
+        <observer name="mpx_order_cancel_controller_before" instance="Mpx\Marketplace\Observer\Order\OrderCancelNoRoute" />
+    </event>
+    <event name="controller_action_predispatch_marketplace_product_attribute_new">
+        <observer name="mpx_product_attribute_new_controller_before" instance="Mpx\Marketplace\Observer\Product\Attribute\NoRoute" />
+    </event>
+</config>

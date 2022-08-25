@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * True Software.
+ *
+ * @category  True
+ * @package   True_mpx
+ * @author    True
+ */
+-->
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>mpx</title>
+    <parent>Magento/backend</parent>
+</theme>

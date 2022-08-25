@@ -1,0 +1,2 @@
+country_code,region_id,zip,zip_to,price,weight_from,weight_to,shipping_method,seller_id,numeric_zipcode,alphanumeric_zipcode
+"US","*","90001","90100","10","1","100","Standard Shipping","0",yes,*

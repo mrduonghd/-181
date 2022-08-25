@@ -1,0 +1,59 @@
+Legend
+
++ Features
+- Bugs
+-------------------------------- Version 3.0.1 --------------------------------------
+
+    + Admin can enable/diable distance-wise shipping.
+	+ Seller/Admin can create distance price range shipping rules.
+	+ Admin can create shipping rule for sellers.
+	- bugs fixed.
+
+-------------------------------- Version 3.0.0 --------------------------------------
+
+    + Compatible with Marketplace version 3.0.x.
+	
+-------------------------------- Version 2.2.0 --------------------------------------
+
+    + Compatible with Marketplace version 2.3.x.
+	
+-------------------------------- Version 2.1.1 --------------------------------------
+
+	+ Admin can change the shipping rule of seller.
+
+-------------------------------- Version 2.1.0 --------------------------------------
+
+	+ Compatible with Magento 2.3.x.
+
+-------------------------------- Version 2.0.5 --------------------------------------
+
+	+ Compatible with MP Base Shipping.
+
+-------------------------------- Version 2.0.4 --------------------------------------
+
+	+ Compatible with magento version 2.2.X and MP 2.1.X
+
+-------------------------------- Version 2.0.3 --------------------------------------
+
+	+ CSV text added.
+	- Bug solved.
+
+-------------------------------- Version 2.0.2 --------------------------------------
+
+	+ Seller and admin can create superset for free shipping rate and fixed shipping rate.
+	+ Admin can create superset rates for seller.
+
+-------------------------------- Version 2.0.1 --------------------------------------
+
+	+ Seller and Admin can create sub methods for the Table rate shipping.
+	+ Admin can create rates for seller.
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+	+ admin can add shipping rates using CSV for admin products.
+	+ Seller can add shipping rates using CSV import for table rates.
+	+ Shipping will be calculated based on Country Id, ZIP and weight.
+	+ Seller can confirm the order and can set the tracking ID for the order.
+	+ Shipping rates will populate based on CSV during checkout.
+	+ Seller can add Invoice & Packing slip address, VAT, TAX information.
+	+ Ability to download Invoice & Shipping slip easily.

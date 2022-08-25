@@ -1,0 +1,79 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+$helper = $block->getHelperObject();
+?>
+<?php /** @var $block \Webkul\MpTimeDelivery\Block\Options\Option */ ?>
+<?php if ($helper->getConfigData('active')): ?>
+<form class="form" 
+    action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" 
+    method="post" id="form-validate" enctype="multipart/form-data" 
+    data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>" 
+    autocomplete="off" data-mage-init='{"validation":{}}'
+>
+    <?= $block->getBlockHtml('formkey')?>
+    <?= $block->getBlockHtml('seller.formkey')?>
+    <div class="wk-mp-design">
+        <fieldset class="fieldset wk-mp-fieldset" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Create Delivery Time Slots')) ?></span>
+            <button id="save_config" class="button action primary wk-mp-btn" title="Add" type="submit">
+                <span>
+                    <span><?= $block->escapeHtml(__('Save')) ?></span>
+                </span>
+            </button>
+            </legend>
+            <div class="field required">
+                <label class="label">
+                    <span>
+                        <?= $block->escapeHtml(__("Minimum Required Time in Order Process")); ?>:
+                    </span>
+                </label>
+                <div class="control">
+                    <input type="text" 
+                        class="input-text required-entry validate-digits validate-digits-range digits-range-0-100" 
+                        name="minimum_time_required" 
+                        value="<?= $block->escapeHtml($block->_getCustomerData()->getMinimumTimeRequired()) ?>"
+                    >
+                </div>
+                <div class="note">
+                    <?= $block->escapeHtml(__("Enter number of days, e.g: 5")); ?>
+                </div>
+            </div>
+            <div class="fieldset-wrapper" id="time-delivery-options-wrapper" data-block="time-delivery-options">
+                <div class="fieldset-wrapper-content" 
+                    id="product-custom-options-content" 
+                    data-role="product-custom-options-content"
+                >
+                    <fieldset class="fieldset">
+                        <div id="options_container" class="">
+                            <div id="product_options_container_top"></div>
+                            <?= $block->getOptionsBoxHtml() ?>
+                        </div>
+
+                        <div class="actions">
+                            <div class="primary">
+                                <button type="button" 
+                                    id="add_new_defined_slot" 
+                                    class="save primary" 
+                                    title="Save"
+                                >
+                                    <span>
+                                        <?= $block->escapeHtml(__('Add New Slot')); ?>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+<?php endif; ?>

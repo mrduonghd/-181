@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Webkul_MpTimeDelivery::slots" title="Delivery Time Slots" translate="title" module="Webkul_MpTimeDelivery" sortOrder="1" parent="Webkul_MpTimeDelivery::menu" action="timedelivery/slots" resource="Webkul_MpTimeDelivery::slots" dependsOnModule="Webkul_Marketplace"/>
+		<add id="Webkul_MpTimeDelivery::order" title="Delivery Orders" translate="title" module="Webkul_MpTimeDelivery" sortOrder="1" parent="Webkul_MpTimeDelivery::menu" action="timedelivery/order" resource="Webkul_MpTimeDelivery::order" dependsOnModule="Webkul_Marketplace"/>
+		<add id="Webkul_MpTimeDelivery::menu" title="Delivery Time Menu" translate="title" module="Webkul_MpTimeDelivery" sortOrder="10" parent="Webkul_Marketplace::marketplace" dependsOnModule="Webkul_Marketplace" resource="Webkul_MpTimeDelivery::menu"/>
+	</menu>
+</config>

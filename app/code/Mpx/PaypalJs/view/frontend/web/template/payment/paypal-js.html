@@ -1,0 +1,64 @@
+<div class="ppjs payment-method"
+     data-bind="css: {'_active': ( 'paypaljs' == isSelected())}, attr: {isSel: isSelected()}">
+    <div class="payment-method-title field choice">
+        <input type="radio" name="payment[method]" class="radio"
+               data-bind="attr: {'id': getCode('paypaljs')}, value: 'paypaljs',  click: selectedPayPalMethod('paypaljs'), visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getCode('paypaljs')}">
+            <!-- PayPal Logo -->
+            <img class="payment-icon" alt=""
+                 src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-medium.png"/>
+            <!-- PayPal Logo -->
+            <span text="getTitle()"></span>
+        </label>
+    </div>
+    <div class="payment-method-content">
+        <!--         ko foreach: getRegion('messages') -->
+        <!--         ko template: getTemplate() -->
+        <!--         /ko -->
+        <!--         /ko -->
+
+        <div id="paypal-button-container" style="min-height: 50px;"></div>
+
+
+        <div class="checkout-agreements-block">
+            <!--             ko foreach: $parent.getRegion('before-place-order') -->
+            <!--                 ko template: getTemplate() -->
+            <!-- /ko -->
+            <!--             /ko -->
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary" data-bind="attr: {'id': getCode('paypaljs')}"></div>
+        </div>
+    </div>
+</div>
+<div data-bind="afterRender:completeRender() "></div>
+
+<!--  ko if: activeCard() -->
+<div  class="ppjs payment-method card"
+     data-bind="css: {'_active': ( 'paypalcc' == isSelected())}, attr: {isSel: isSelected()}">
+    <div class="payment-method-title field choice">
+        <input type="radio" name="payment[method]" class="radio"
+               data-bind="attr: {'id': getCode('paypalcc')}, value: 'paypalcc',  click: selectedPayPalMethod('paypalcc'), visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getCode('paypalcc')}">
+            <span text="getCreditCardTitle()"></span>
+        </label>
+    </div>
+    <div class="payment-method-content">
+        <!--         ko foreach: getRegion('messages') -->
+        <!--         ko template: getTemplate() -->
+        <!--         /ko -->
+        <!--         /ko -->
+        <div id="card-button-container" style="min-height: 50px;"></div>
+        <div class="checkout-agreements-block">
+            <!--             ko foreach: $parent.getRegion('before-place-order') -->
+            <!--                 ko template: getTemplate() -->
+            <!-- /ko -->
+            <!--             /ko -->
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary" data-bind="attr: {'id': getCode('paypalcc')}"></div>
+        </div>
+    </div>
+</div>
+<div data-bind="afterRender:completeRender() "></div>
+<!-- /ko -->

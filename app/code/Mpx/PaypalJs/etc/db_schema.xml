@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="paypal_checkout_info" resource="default" engine="innodb" >
+        <column xsi:type="int"       name="id" unsigned="true" padding="10" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar"   name="order_increment_id" length="32" nullable="false" comment="セラーや顧客に提示されるmagentoの注文番号"/>
+        <column xsi:type="decimal"   name="settlement_amount" scale="4" precision="20" nullable="false" comment="注文時の決済金額"/>
+        <column xsi:type="varchar"   name="paypal_capture_id" length="50" />
+        <column xsi:type="varchar"   name="paypal_authorization_id" length="50" />
+        <column xsi:type="timestamp" name="paypal_authorization_period" comment="オーソリ最終期限"/>
+        <column xsi:type="timestamp" name="paypal_honor_period" comment="オーソリ期限"/>
+        <column xsi:type="varchar"   name="paypal_status" nullable="false" length="20" comment="PayPalのステータス  authorized:オーソリ済   authority_expired:オーソリ期限切れ     captured:キャプチャ済     refunded:返金済"/>
+        <column xsi:type="timestamp" name="paypal_authorized_at" />
+        <column xsi:type="timestamp" name="paypal_authority_extended_at"  />
+        <column xsi:type="timestamp" name="paypal_captured_at"  />
+        <column xsi:type="timestamp" name="all_shipped_at"  />
+        <column xsi:type="timestamp" name="canceled_at" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" default="CURRENT_TIMESTAMP" />
+        <column xsi:type="timestamp" name="updated_at" />
+
+        <column xsi:type="int" name="order_id" padding="10" nullable="false" comment="Magento OrderID" disabled="true"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <!-- add index-->
+        <index referenceId="paypal_checkout_info_order_increment_id" indexType="btree">
+            <column name="order_increment_id"/>
+        </index>
+        <index referenceId="paypal_checkout_info_authorization_period" indexType="btree">
+            <column name="paypal_authorization_period"/>
+        </index>
+        <index referenceId="paypal_checkout_info_honor_period" indexType="btree">
+            <column name="paypal_honor_period"/>
+        </index>
+        <index referenceId="paypal_checkout_info_paypal_status" indexType="btree">
+            <column name="paypal_status"/>
+        </index>
+        <!-- end add index -->
+    </table>
+</schema>

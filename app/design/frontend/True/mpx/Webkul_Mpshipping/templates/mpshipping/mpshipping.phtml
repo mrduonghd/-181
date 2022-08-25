@@ -1,0 +1,461 @@
+<?php
+/**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<link
+    rel="stylesheet"
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
+>
+<?php
+$helper = $block->getHelperData();
+$editFileUrl = $block->getViewFileUrl(
+    'Webkul_Marketplace::images/icon-edit.png'
+);
+$deleteFileUrl = $block->getViewFileUrl(
+    'Webkul_Marketplace::images/icon-trash.png'
+);
+$currencySymbol = $block->getBaseCurrencySymbol();
+$methodText = __('i.e. Standard delivery or Special delivery');
+$methodMessage = __('This enables you to assign as shipping type/service, i.e Standard or Next Day Delivery');
+?>
+<?php if ($helper->getMpshippingEnabled()) { ?>
+    <form
+        action="<?= /* @noEscape */ $block->getUrl('mpshipping/shipping') ?>"
+        id="uploadshippingform"
+        method="post"
+        enctype="multipart/form-data"
+        data-mage-init='{"validation":{}}'
+    >
+        <?= $block->getBlockHtml('seller.formkey')?>
+        <?= $block->getBlockHtml('formkey')?>
+        <div class="wk-mp-page-title page-title">
+            <h3><?= /* @noEscape */  __('Upload Shipping Detail') ?></h3>
+            <button
+                class="button wk-mp-btn"
+                title="<?= /* @noEscape */  __('Save Shipping') ?>"
+                type="submit"
+                id="save-btn"
+            >
+                <span><span><?= /* @noEscape */ __('Save Shipping') ?></span></span>
+            </button>
+        </div>
+        <div class="fieldset">
+            <a class="gray file-link"
+               href="<?= /* @noEscape */ $block->getViewFileUrl('Mpx_Mpshipping::shippinginfo.csv');?>"
+            >
+                <span>
+                    <?= /* @noEscape */ __('Download sample file');?>
+                </span>
+            </a>
+            <div class="wk_clear"></div>
+            <ul class="form-list" id="wk_bodymain">
+                <li>
+                    <label><?= /* @noEscape */ __('CSV File') ?>:</label>
+                    <div class="input-box">
+                        <input type="file"
+                               id = "upload-shipping-csv"
+                               class="required-entry"
+                               name="shippingfile"
+                        />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <?php
+    $partnerId = $helper->getPartnerId();
+    $shippingCollection = $block->getShippingCollection($partnerId);
+    $shippingCount = count($shippingCollection);
+    $shippingMethodCollection = new \Magento\Framework\DataObject();
+    ?>
+    <div class="wk_shipping_rate_wrapper" style="display:none">
+        <div class="wk_mp_design">
+            <span class="wk_close_wrapper">x</span>
+            <div class="block block-account">
+                <div class="block-title">
+                    <strong><span><h4><?= /* @noEscape */ __('Add shipping record') ?></h4></span></strong>
+                </div>
+            </div>
+            <form
+                action="<?= /* @noEscape */ $block->getUrl('mpshipping/shipping/add') ?>"
+                method="post"
+                id="addNewRate"
+                data-mage-init='{"validation":{}}'
+            >
+                <?= $block->getBlockHtml('formkey')?>
+                <?= $block->getBlockHtml('seller.formkey')?>
+                <ul class="form-list" id="wk_bodymain">
+                    <li class="shipping_rate">
+                        <div class="add_shipping_outer">
+                            <div class="add_shipping">
+                                <div class="wkplussign colortheme">+</div>
+                                <label class="colortheme">
+                                    <?= /* @noEscape */ __('Add Shipping Type')?>
+                                </label>
+                            </div>
+                            <div class="add_shipping_form">
+                                <label><?= /* @noEscape */ __('Name: ')?>:</label>
+                                <div class="shipping_suggestion_outer display_inline-block">
+                                    <input type='text'
+                                           name='shipping_method'
+                                           autosuggestion='off'
+                                           class="required-entry shipping_method"
+                                           placeholder="<?= /* @noEscape */ $methodText?>"
+                                    />
+                                    <div class="wk_sugestion_list">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Country code') ?>:</label>
+                        <div class="input-box">
+                            <select name="dest_country_id" id="country_code" class="required-entry">
+                                <?php
+                                $countryList = $block->getCountryOptionArray();
+                                foreach ($countryList as $countries) { ?>
+                                    <option
+                                        value="<?= /* @noEscape */  $countries['value'] ?>"
+                                    >
+                                        <?= /* @noEscape */  $countries['label']?>
+                                    </option>
+                                    <?php
+                                } ?>
+                            </select>
+                        </div>
+                    </li>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Region code') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry input-text"
+                                   name="dest_region_id"
+                                   id="region_code"
+                                   placeholder="<?= /* @noEscape */ __('(Enter region code or enter * for all)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Weight from') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry validate-number validate-zero-or-greater input-text"
+                                   name="weight_from"
+                                   id="weight_from"
+                                   placeholder="<?= /* @noEscape */ __('(Enter min weight to calculate shipping)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Weight to') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry validate-number validate-zero-or-greater  input-text"
+                                   name="weight_to"
+                                   id="weight_to"
+                                   placeholder="<?= /* @noEscape */ __('(Enter max weight to calculate shipping)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Zip from') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry input-text"
+                                   name="dest_zip"
+                                   id="zip_from"
+                                   placeholder="<?= /* @noEscape */ __('(Enter specific zip or * for all)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Zip to') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry input-text"
+                                   name="dest_zip_to"
+                                   id="zip_to"
+                                   placeholder="<?= /* @noEscape */ __('(Please enter the maximum value of the postal code to apply for this shipping method)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li>
+                        <label><?= /* @noEscape */ __('Price')." (".$currencySymbol.")" ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="required-entry validate-number validate-zero-or-greater validate-digits input-text"
+                                   name="price"
+                                   id="price"
+                                   placeholder="<?= /* @noEscape */ __('(Enter shipping price)')?>"
+                            />
+                        </div>
+                    </li>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Numeric Zipcode') ?>:</label>
+                        <div class="input-box">
+                            <select name="is_range" id="is_range" class="required-entry">
+                                <option value="yes"><?= /* @noEscape */  __('Yes') ?></option>
+                                <<option value="no"><?= /* @noEscape */  __('No') ?></option>
+                            </select>
+                        </div>
+                    </li>
+                    <li hidden="hidden">
+                        <label><?= /* @noEscape */ __('Alphanumeric Zipcode') ?>:</label>
+                        <div class="input-box">
+                            <input type="text"
+                                   class="input-text"
+                                   name="zipcode"
+                                   id="zipcode"
+                                   placeholder="<?= /* @noEscape */ __('(Enter Alphanumeric zipcode)')?>"
+                            />
+                        </div>
+                    </li>
+                    <button class="button wk_mp_btn"
+                            title="<?= /* @noEscape */ __('Save') ?>"
+                            type="submit" id="save_butn">
+                        <span><span><?= /* @noEscape */ __('Save') ?></span></span>
+                    </button>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div class="block block-account">
+        <div class="block-title shipping_rate">
+            <strong>
+                <span>
+                    <label class="label">
+                        <?= /* @noEscape */ __('Shipping Rate List') ?>
+                    </label>
+                </span>
+            </strong>
+            <span class="addnewshipping">
+                <label class="addlabel">
+                    <?= /* @noEscape */ '+ '. __('Add Shipping Method')?>
+                </label>
+            </span>
+        </div>
+    </div>
+    <?php if (count($shippingCollection)>0) { ?>
+        <div class="fieldset wk_mp_fieldset">
+            <form action="<?= /* @noEscape */ $block->getCurrentUrl();?>" method="post">
+                <?php
+                $shippingMethodCollection = $block->getShippingMethodCollection();
+                $shippingMethodCollectionsize = count($shippingMethodCollection);
+                foreach ($shippingMethodCollection as $shippingMethod) {
+                    $shippingforShippingMethod = $block->getShippingforShippingMethod(
+                        $shippingMethod->getEntityId(),
+                        $partnerId
+                    );
+                    if ($shippingforShippingMethod->getSize()>0) {
+                        ?>
+                        <div class="shipping_method_outer">
+                        <div class="shipping_method_head">
+                            <input
+                                type="hidden"
+                                name='shipmethod_id'
+                                class='shipmethod_id'
+                                value='<?= /* @noEscape */ $shippingMethod->getEntityId();?>'
+                            />
+                            <label><?= /* @noEscape */ $shippingMethod->getMethodName();?></label>
+                            <span class="wk_ship_method_delete">
+                                        <i class="fa fa-trash-o fa-lg" aria-hidden="true"
+                                           title='<?= /* @noEscape */ __('Delete')?>'></i>
+                                    </span>
+                        </div>
+                        <table cellspacing="0" class="border wk-mp-list-table">
+                            <thead>
+                            <tr class="wk_mp_tr_heading" id='wk-mp-tr-heading'>
+                                <th hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Country code') ?>
+                                                </span>
+                                </th>
+                                <th hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Region code') ?>
+                                                </span>
+                                </th>
+                                <th hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Weight') ?>
+                                                </span>
+                                </th>
+                                <th>
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Zip code') ?>
+                                                </span>
+                                </th>
+                                <th>
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Price')." (".$currencySymbol.")" ?>
+                                                </span>
+                                </th>
+                                <th hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Numeric Zipcode') ?>
+                                                </span>
+                                </th>
+                                <th hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ __('Alphanumeric Zipcode') ?>
+                                                </span>
+                                </th>
+                                <th><span>&nbsp;</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $data=[];
+                            ?>
+                            <?php foreach ($shippingforShippingMethod as $shipping) { ?>
+                                <tr class="wk_content wk_row_list wk-row-view">
+                                    <?php
+                                    $shippingMethodName = $block->getShippingMethodName(
+                                        $shipping->getShippingMethodId()
+                                    );
+                                    $data['country_code']="JP";
+                                    $data['region_code']="*";
+                                    $data['weight_from']=$shipping->getWeightFrom();
+                                    $data['weight_to']=$shipping->getWeightTo();
+                                    $data['zip_from']=$shipping->getDestZip();
+                                    $data['zip_to']=$shipping->getDestZipTo();
+                                    $data['price']=(int)$shipping->getPrice();
+                                    $data['is_range']="yes";
+                                    $data['zipcode']=$shipping->getZipcode();
+                                    $data['shipping_method']=$shippingMethodName;
+                                    $shipInfo=json_encode($data);
+                                    $zipLabel = $shipping->getDestZip()." to ".$shipping->getDestZipTo();
+                                    $weightFrom = round($shipping->getWeightFrom(), 2);
+                                    $weightTo = round($shipping->getWeightTo(), 2);
+                                    $weightLabel = $weightFrom." - ".$weightTo;
+                                    ?>
+                                    <td hidden="hidden">
+                                                <span class="label">
+                                                    <?= /* @noEscape */ $shipping->getDestCountryId();?>
+                                                </span>
+                                    </td>
+                                    <td hidden="hidden">
+                                                <span class="label">
+                                                    <?= /* @noEscape */ $shipping->getDestRegionId();?>
+                                                </span>
+                                    </td>
+                                    <td hidden="hidden">
+                                                <span class="label">
+                                                    <?= /* @noEscape */ $weightLabel;?>
+                                                </span>
+                                    </td>
+                                    <td>
+                                                <span class="label">
+                                                    <?= /* @noEscape */ $zipLabel ;?>
+                                                </span>
+                                    </td>
+                                    <td>
+                                                <span class="label">
+                                                    <?= /* @noEscape */ (int)$shipping->getPrice();?>
+                                                </span>
+                                    </td>
+                                    <td hidden="hidden">
+                                                <span class="label">
+                                                    <?= /* @noEscape */ $shipping->getIsRange();?>
+                                                </span>
+                                    </td>
+                                    <td hidden="hidden">
+                                                <span class="label">
+                                                <?= /* @noEscape */ $shipping->getZipcode();?>
+                                                </span>
+                                    </td>
+                                    <input type="hidden" class="hidden_id"
+                                           value="<?= /* @noEscape */ $shipping->getMpshippingId(); ?>" />
+                                    <input type="hidden" class="data"
+                                           value='<?= /* @noEscape */ $shipInfo ?>' />
+                                    <td>
+                                                <span class="label wk_action">
+                                                    <img src="<?= /* @noEscape */ $editFileUrl; ?>"
+                                                         alt="edit" title="edit" class="mpship_edit"/>
+                                                    <img src="<?= /* @noEscape */ $deleteFileUrl; ?>"
+                                                         alt="delete" title="delete" class="mpship_delete"/>
+                                                </span>
+                                    </td>
+                                </tr>
+                            <?php   } ?>
+                            </tbody>
+                        </table>
+                        </div><?php
+                    }
+                }
+                ?>
+            </form>
+        </div>
+        <?php
+    } else { ?>
+        <div class="fieldset wk_mp_fieldset">
+            <strong><span><h3><?= /* @noEscape */ __('No Record Found!') ?></h3></span></strong>
+        </div>
+        <?php
+    } ?>
+    <script type="text/javascript">
+        require([
+            "jquery",
+            "mage/mage"
+        ], function($wk_jq){
+            var collectionsize = <?= /* @noEscape */ $shippingCount ?>;
+            if(collectionsize>0){
+                var count = <?= /* @noEscape */ count($shippingMethodCollection->getData())?>;
+                if(count>0){
+                    var shippingMethod = $wk_jq.parseJSON(
+                        '<?= /* @noEscape */ json_encode($shippingMethodCollection->getData()) ?>'
+                    );
+                    var html = "<span value=''><?= /* @noEscape */ __('SUGGESTIONS')?></span>";
+                    $wk_jq(shippingMethod).each(function () {
+                        var shippingMethodData = $wk_jq(this)[0];
+                        html += '<span value="'+shippingMethodData.entity_id+'">';
+                        html += shippingMethodData.method_name+'</span>';
+                    });
+                    $wk_jq('.wk_sugestion_list').append(html);
+                }
+            }
+        });
+    </script>
+<?php } ?>
+<?php
+$formData = [
+    'wk_ship_method_delete'    =>  '.wk_ship_method_delete',
+    'deleteUrl' =>  $block->getUrl(
+        'mpshipping/shipping/deletemethod',
+        ['_secure' => true]
+    ),
+    'wkCloseWrap' => '.wk_close_wrapper',
+    'wkRateWrap' => '.wk_shipping_rate_wrapper',
+    'addShippingLink' => '.add_shipping',
+    'addShippingForm' => '.add_shipping_form',
+    'deleteRate' => '.mpship_delete',
+    'deleteRateUrl' => $block->getUrl(
+        'mpshipping/shipping/delete/',
+        ['_secure' => true]
+    ),
+    'uploadCsv' => '#upload-shipping-csv',
+    'editUrl' => $block->getUrl(
+        'mpshipping/shipping/edit/',
+        ['_secure' => true]
+    ),
+    'addNewUrl' => $block->getUrl(
+        'mpshipping/shipping/add/',
+        ['_secure' => true]
+    ),
+    "addNewRateForm" => "#addNewRate"
+];
+$serializedFormData = $block->getJsonHelper()->jsonEncode($formData);
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Wktablerate": <?= /* @noEscape */ $serializedFormData; ?>
+    }
+}
+</script>

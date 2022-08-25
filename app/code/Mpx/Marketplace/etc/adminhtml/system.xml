@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mpx_web" translate="label" type="text" sortOrder="305" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Market Place</label>
+            <tab>Mpx</tab>
+            <resource>Mpx_Marketplace::Mpx_config</resource>
+            <group id="default" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Setting 403 page</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="non_seller" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>403 CMS Page</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="marketplace" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="general_settings" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="percent" translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Global Commission Rate</label>
+                    <validate>required-entry validate-number validate-digits-range digits-range-0-100</validate>
+                    <comment>Should be integer value like 20</comment>
+                    <frontend_model>Mpx\Marketplace\Block\System\Config\Form\Field\Disable</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

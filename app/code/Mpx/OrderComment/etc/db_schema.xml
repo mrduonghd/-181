@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order_status_history" >
+        <column xsi:type="smallint" name="comment_status" padding="6" nullable="true" default="0" comment="注文に対するコメントのステータス, 0 = デフォルト, 1 = 削除済み, 2 = 編集済み" />
+    </table>
+</schema>

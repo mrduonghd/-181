@@ -1,0 +1,116 @@
+
+<script id="time-delivery-base-template" type="text/x-magento-template">
+    <div class="fieldset-wrapper admin__collapsible-block-wrapper opened" id="option_<%- data.id %>">
+        <input type="hidden" 
+            name="<?= $block->escapeHtml($block->getFieldName()).'[<%- data.id %>][entity_id]'; ?>" 
+            value="<%- data.entity_id %>"
+        >
+        <input type="hidden" 
+            name="<?= $block->escapeHtml($block->getFieldName()).'[<%- data.id %>][seller_id]'; ?>" 
+            value="<%- data.seller_id %>"
+        >
+        <input 
+            id="<?= $block->escapeHtml($block->getFieldId()) ?>_<%- data.id %>_is_delete" 
+            name="<?= $block->escapeHtml($block->getFieldName()) ?>[<%- data.id %>][is_delete]" 
+            type="hidden" value=""
+        />
+        <table class="shipping_table" id="<%- data.id %>-content">
+            <thead>
+                <tr class="wk_mp_headcus ul_first headings">
+                    <th><span><?= $block->escapeHtml(__('Select Day')." *") ?></span></th>
+                    <th><span><?= $block->escapeHtml(__('Start Time')." *") ?></span></th>
+                    <th><span><?= $block->escapeHtml(__('End Time')." *") ?></span></th>
+                    <th><span><?= $block->escapeHtml(__('Quotas')." *") ?></span></th>
+                    <th><span>
+                        <button class="button action-delete" 
+                            id="<?= $block->escapeHtml($block->getFieldId()) ?>_<%- data.id %>_delete" 
+                            title="<?= $block->escapeHtml(__('Delete'))?>" type="button"
+                        >
+                            <span>
+                                <span><?= $block->escapeHtml(__('Delete')) ?></span>
+                            </span>
+                        </button>
+                    </span></th>
+                </tr>
+            </thead>
+            <tbody class="wk_mp_headcus wk-mp-body">
+                <tr class="shipbody" id="<?= $block->escapeHtml($block->getFieldId()) ?>_<%- data.id %>">
+
+                    <td class="field field-option-input-type required">
+                        <div class="control opt-type">
+                            <?= $block->getDaysHtml() ?>
+                        </div>
+                    </td>
+                    <td class="field required time">
+                        <div class="control opt-type">
+                            <input type="text" 
+                                name="<?= $block->escapeHtml($block->getFieldName()).'[<%- data.id %>][start_time]'; ?>"
+                                class=" text-center" 
+                                id="<?= $block->escapeHtml('start_'.$block->getFieldId()) . '_<%- data.id %>'?>" 
+                                data-validate="{required:true}"
+                            >
+                        </div>
+                    </td>
+                    <td class="field time required">
+                        <div class="control opt-type">
+                            <input type="text" 
+                                name="<?= $block->escapeHtml($block->getFieldName()).'[<%- data.id %>][end_time]'; ?>" 
+                                class=" text-center" 
+                                id="<?= $block->escapeHtml('end_'.$block->getFieldId()) . '_<%- data.id %>'?>" 
+                                data-validate="{required:true}"
+                            >
+                        </div>
+                    </td>
+                    <td class="time">
+                        <div class="field required">
+                            <div class="control opt-type">
+                                <input 
+                                    id="<?= $block->escapeHtml($block->getFieldId()) . '_<%- data.id %>_quota' ?>" 
+                                    type="text" 
+                                    class="input-text" 
+                                    data-validate="{
+                                        required:true,
+                                        'validate-number':true,
+                                        'validate-zero-or-greater':true
+                                    }" 
+                                    name="<?= $block->escapeHtml(
+                                        $block->getFieldName()
+                                    ).'[<%- data.id %>][order_count]' ?>"
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+<script>
+require([
+    "jquery",
+    'jquery/jquery-ui-timepicker-addon',
+    "Webkul_MpTimeDelivery/js/time-delivery-options"
+], function(jQuery){
+
+jQuery(function ($) {
+    var fieldSet = $('[data-block=time-delivery-options]');
+    fieldSet.timeDeliveryOptions(<?= /*_ @noEscape _*/ $block->getHelperObject()->getJson()
+        ->serialize(
+            [
+            'fieldId' => $block->getFieldId(),
+            'formKey' => $block->getFormKey(),
+            'itemCount' => $block->getItemCount(),
+            'sellerId'  => $block->getCurrentCustomerId(),
+            'currentCustomerId' => $block->getCurrentCustomerId(),
+            ]
+        )?>);
+    //adding data to templates
+    <?php /** @var $_value \Magento\Framework\DataObject */ ?>
+    <?php foreach ($block->getTimeSlotsValue() as $_value): ?>
+        fieldSet.timeDeliveryOptions('addSlot', <?= /*_ @noEscape _*/  $_value; ?>);
+    <?php endforeach; ?>
+});
+
+});
+</script>

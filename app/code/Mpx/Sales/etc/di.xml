@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Marketplace
+ *
+ * @category  Mpx
+ * @package   Mpx_Sales
+ * @author    Mpx
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Block\Order\Info" type="Mpx\Sales\Block\Order\Info" />
+    <preference for="Magento\Sales\Block\Order\Totals" type="Mpx\Sales\Block\Order\Totals" />
+    <type name="Magento\Sales\Block\Order\Totals">
+      <plugin name="change_position_tax_total_customer" type="Mpx\Sales\Plugin\Order\BeforeTotals" sortOrder="1" disabled="false" />
+    </type>
+</config>

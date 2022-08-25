@@ -1,0 +1,26 @@
+<?php
+/**
+ * Vnext Software.
+ */
+?>
+<?php
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block Magento\Customer\Block\Account\AuthorizationLink
+ */
+?>
+
+<?php
+    $href = $block->getHref();
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Mpx_Base/js/footer": {
+            "href": "<?= $href ?>"
+        }
+    }
+}
+</script>

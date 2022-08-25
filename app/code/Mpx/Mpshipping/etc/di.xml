@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Marketplace
+ *
+ * @category  Mpx
+ * @package   Mpx_Mpshipping
+ * @author    Mpx
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Webkul\Mpshipping\Controller\Shipping\Add">
+        <plugin name="Mpx_Mpshipping::BeforeSaveShippingAdd"
+                type="Mpx\Mpshipping\Plugin\Shipping\BeforeSaveShippingAdd"
+                sortOrder="1" />
+    </type>
+    <type name="Webkul\Mpshipping\Controller\Shipping\Edit">
+        <plugin name="Mpx_Mpshipping::BeforeSaveShippingEdit"
+                type="Mpx\Mpshipping\Plugin\Shipping\BeforeSaveShippingEdit"
+                sortOrder="2" />
+    </type>
+    <preference for="Webkul\Mpshipping\Controller\Shipping\View" type="Mpx\Mpshipping\Controller\Shipping\View" />
+    <preference for="Webkul\Mpshipping\Controller\Shipping\Index" type="Mpx\Mpshipping\Controller\Shipping\Index" />
+</config>

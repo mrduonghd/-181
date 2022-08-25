@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="timeslot" translate="label" type="text" sortOrder="305" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Delivery Time Configuration</label>
+            <tab>webkul</tab>
+            <resource>Webkul_MpTimeDelivery::config_timeslot</resource>
+            <group id="configurations" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Delivery Time Settings</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allowed_days" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Allowed Days</label>
+                    <source_model>Webkul\MpTimeDelivery\Model\Config\Source\Days</source_model>
+                    <backend_model>Webkul\MpTimeDelivery\Model\Config\SaveOption</backend_model>
+                </field>
+                <field id="default_allowed_day" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Default Allowed Day</label>
+                    <source_model>Webkul\MpTimeDelivery\Model\Config\Source\Days</source_model>
+                    <backend_model>Webkul\MpTimeDelivery\Model\Config\SaveOption</backend_model>
+                </field>
+
+                <field id="maximum_days" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Display Total Days</label>
+                    <validate>required-entry validate-digits validate-not-negative-number validate-digits-range digits-range-0-100</validate>
+                    <comment>Enter number of days, e.g: 7</comment>
+                </field>
+                <field id="process_time" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Minimum Required Time in Order Process</label>
+                    <validate>required-entry validate-digits validate-not-negative-number validate-digits-range digits-range-0-100</validate>
+                    <comment>Enter number of days, e.g: 5. And 'zero' will consider as current day.</comment>
+                </field>
+                <field id="message" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Error Message if Time Slots are not available.</label>
+                </field>
+                 <!-- <field id="default_allowed_day" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Default Allowed Day</label>
+                    <source_model>Webkul\MpTimeDelivery\Model\Config\Source\Days</source_model>
+                    <backend_model>Webkul\MpTimeDelivery\Model\Config\SaveOption</backend_model>
+                </field> -->
+                <!-- <field id="delivery_time" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Default Time Range</label>
+                    <frontend_model>Webkul\MpTimeDelivery\Model\Config\Source\DeliveryTime</frontend_model>
+                </field> -->
+                <!-- <field id="default_start_time" translate="label" type="time" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                     <label>Default Start Time</label>
+                </field>
+
+                <field id="default_end_time" translate="label" type="time" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Default End Time</label>
+                </field>
+                 -->
+            </group>
+            <group id="default_slots" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Default Delivery Time Slots</label>
+                <field id="slots_data" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Webkul\MpTimeDelivery\Block\System\Config\Slots</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

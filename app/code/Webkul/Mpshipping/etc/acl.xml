@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Webkul_Marketplace::marketplace" title="Marketplace Management" sortOrder="10" >
+                    <resource id="Webkul_Mpshipping::menu" title="Table Rate Shipping Manager" sortOrder="10">
+                        <resource id="Webkul_Mpshipping::mpshipping" title="Marketplace Table Rate Shipping Manager" sortOrder="14">
+                        </resource>
+                        <resource id="Webkul_Mpshipping::mpshippingset" title="Marketplace Super Shipping Set Manager" sortOrder="15">
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magento_Shipping::carriers">
+                                <resource id="Webkul_Mpshipping::config_webkulshipping" title="Marketplace Table Rate Shipping Methods Section" sortOrder="50" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

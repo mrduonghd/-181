@@ -1,0 +1,114 @@
+<?php
+/**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$createBlock = $block->getLayout()->createBlock(\Webkul\Mpshipping\Block\Mpshipping\Mpshipping::class);
+$mpHelper = $createBlock->getMpHelperData();
+$helper = $createBlock->getHelperData();
+$isPartner= $mpHelper->isSeller();
+$magentoCurrentUrl = $block->getCurrentUrl();
+$isSellerGroup = $mpHelper->isSellerGroupModuleInstalled();
+?>
+<?php
+if ($isPartner && $helper->getMpshippingEnabled()) {
+    if (($isSellerGroup &&
+        $mpHelper->isAllowedAction('mpshipping/shipping/view')) ||
+        ($isSellerGroup && $mpHelper->isAllowedAction('mpshipping/shippingset/view')) ||
+        !$isSellerGroup
+        ) {?>
+        <li class="mpshipping nav item <?= /* @noEscape */ strpos($magentoCurrentUrl, 'mpshipping')? "current":"";?>">
+        <?php
+        if (strpos($magentoCurrentUrl, 'mpshipping') !== false) { ?>
+            <strong><?= /* @noEscape */ __('Table Rate Shipping') ?></strong>
+            <?php
+        } else { ?>
+            <a href="#">
+                <?= /* @noEscape */ __('Table Rate Shipping') ?>
+            </a>
+            <?php
+        } ?>
+
+            <ul class="nav items">
+                <?php if (($isSellerGroup &&
+                    $mpHelper->isAllowedAction('mpshipping/shipping/view')) ||
+                    !$isSellerGroup
+                    ) { ?>
+                <li class="nav item 
+                <?= strpos($magentoCurrentUrl, 'mpshipping/shipping/view') !== false ? "current":"";?>">
+                    <?php
+                    if (strpos($magentoCurrentUrl, 'mpshipping/shipping/view') !== false) { ?>
+                    <strong><?= /* @noEscape */ __('Manage Shipping') ?></strong>
+                        <?php
+                    } else { ?>
+                    <a href="<?= /* @noEscape */ $block->getUrl('mpshipping/shipping/view'); ?>">
+                        <?= /* @noEscape */ __('Manage Shipping') ?>
+                    </a>
+                        <?php
+                    } ?>
+                </li>
+                <?php } ?>
+                <?php if (($isSellerGroup &&
+                $mpHelper->isAllowedAction('mpshipping/shippingset/view')) ||
+                !$isSellerGroup) { ?>
+                <li class="nav item 
+                <?= strpos($magentoCurrentUrl, 'mpshipping/shippingset/view') !== false ? "current":"";?>">
+                    <?php
+                    if (strpos($magentoCurrentUrl, 'mpshipping/shippingset/view') !== false) { ?>
+                    <strong><?= /* @noEscape */ __('Manage Shipping Superset') ?></strong>
+                        <?php
+                    } else { ?>
+                    <a href="<?= /* @noEscape */ $block->getUrl('mpshipping/shippingset/view'); ?>">
+                        <?= /* @noEscape */ __('Manage Shipping Superset') ?>
+                    </a>
+                        <?php
+                    } ?>
+                </li>
+                <?php } ?>
+                <?php if ($helper->getDistanceShippingStatus() &&
+                (($isSellerGroup &&
+                $mpHelper->isAllowedAction('mpshipping/distanceset/view')) ||
+                !$isSellerGroup)) { ?>
+                <li class="nav item 
+                <?= strpos($magentoCurrentUrl, 'mpshipping/distanceset/view') !== false ? "current":"";?>">
+                    <?php
+                    if (strpos($magentoCurrentUrl, 'mpshipping/distanceset/view') !== false) { ?>
+                    <strong><?= /* @noEscape */ __('Shipping By Distance') ?></strong>
+                        <?php
+                    } else { ?>
+                    <a href="<?= /* @noEscape */ $block->getUrl('mpshipping/distanceset/view'); ?>">
+                        <?= /* @noEscape */ __('Shipping By Distance') ?>
+                    </a>
+                        <?php
+                    } ?>
+                </li>
+                <?php } ?>
+                <?php if ($helper->getDistanceShippingStatus() &&
+                (($isSellerGroup &&
+                $mpHelper->isAllowedAction('mpshipping/seller/location')) ||
+                !$isSellerGroup)) { ?>
+                <li class="nav item 
+                <?= strpos($magentoCurrentUrl, 'mpshipping/seller/location') !== false ? "current":"";?>">
+                    <?php
+                    if (strpos($magentoCurrentUrl, 'mpshipping/seller/location') !== false) { ?>
+                    <strong><?= /* @noEscape */ __('Set Location') ?></strong>
+                        <?php
+                    } else { ?>
+                    <a href="<?= /* @noEscape */ $block->getUrl('mpshipping/seller/location'); ?>">
+                        <?= /* @noEscape */ __('Set Location') ?>
+                    </a>
+                        <?php
+                    } ?>
+                </li>
+                <?php } ?>
+            </ul>
+        </li>
+<?php }
+}?>

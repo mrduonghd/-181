@@ -1,0 +1,171 @@
+<?php
+$paramData = $block->getRequest()->getParams();
+$filter = '';
+$filterStatus = '';
+$filterDateFrom = '';
+$filterDateTo = '';
+$filterTimeFrom = '';
+$filterTimeTo = '';
+if (isset($paramData['s'])) {
+    $filter = $paramData['s'] != '' ? $paramData['s'] : '';
+}
+if (isset($paramData['status'])) {
+    $filterStatus = $paramData['status'] != '' ? $paramData['status'] : '';
+}
+if (isset($paramData['from_date'])) {
+    $filterDateFrom = $paramData['from_date'] != '' ? $paramData['from_date'] : '';
+}
+if (isset($paramData['to_date'])) {
+    $filterDateTo = $paramData['to_date'] != '' ? $paramData['to_date'] : '';
+}
+$deliveryOrderCollection = $block->getOrderCollection();
+?>
+<div class="wk-mp-design">
+    <fieldset class="fieldset info wk-mp-fieldset">
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Order List')) ?></span>
+        </legend>
+        <div class="grid">
+            <div class="hor-scroll">
+                <form 
+                    action="<?= $block->escapeUrl(
+                        $block->getUrl(
+                            'timedelivery/seller/orders',
+                            ['_secure' => $block->getRequest()->isSecure()]
+                        )
+                    )?>" 
+                    method="get" 
+                    id="form-productlist-filter"  
+                    name="formProductlistFilter" 
+                    data-mage-init='{"validation":{}}'
+                >
+                    <table cellspacing="0" class="border wk-mp-list-table">
+                        <thead>
+                            <tr id="wk-mp-tr-heading">
+                                <th><span><?= $block->escapeHtml(__('Delivery Date')) ?></span></th>
+                                <th><span><?= $block->escapeHtml(__('Order#')) ?></span></th>
+                                <th><span>&nbsp;</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="wk-mp-body">
+                            <tr>
+                                <td>
+                                    <span class="wk-mp-td-span">
+                                        <?= $block->escapeHtml(__('From: ')) ?>
+                                        <input name="from_date" id="special-from-date" class="input-text" 
+                                        value="<?= $block->escapeHtml($filterDateFrom)?>" 
+                                    />
+                                    </span>                                
+                                    <span class="wk-mp-td-span">
+                                        <?= $block->escapeHtml(__('To: ')) ?>
+                                        <input name="to_date" 
+                                            id="special-to-date" class="input-text" 
+                                            value="<?= $block->escapeHtml($filterDateTo)?>" 
+                                        />
+                                    </span>
+                                </td>
+                                <td>
+                                    <input type="text" class="input-text" name="s" 
+                                        placeholder='<?= $block->escapeHtml(__('Search by order id')) ?>' 
+                                        value="<?= $block->escapeHtml($filter)?>"
+                                    />
+                                </td>
+                                <td>
+                                    <button class="button" title="Save" type="submit">
+                                        <span><span><span><?= $block->escapeHtml(__('Submit')) ?></span></span></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table cellspacing="0" class="border wk-mp-list-table wk-mp-list-container-table">
+                        <thead>
+                            <tr class="wk-content">
+                                <th class="wk-first-td">
+                                    <span class="label name">
+                                        <?= $block->escapeHtml(__('Delivery Date'))?>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="label pro-status">
+                                        <?= $block->escapeHtml(__('Order#'))?>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="label pro-status">
+                                        <?= $block->escapeHtml(__('Selected Slot'))?>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="label pro-status">
+                                        <?= $block->escapeHtml(__('Purchased On'))?>
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        if (!$deliveryOrderCollection->getSize()) {
+                            ?>
+                        <tr class="wk-row-view empty-message">
+                            <td colspan="4">
+                                <?= $block->escapeHtml(__("We couldn't find any records. "))?>
+                            </td>
+                        </tr>
+
+                            <?php
+                        } else {
+                            foreach ($deliveryOrderCollection as $order):
+                                ?>
+                                    <tr class="wk-row-view">
+                                        <td>        
+                                            <span class="label pro-status">
+                                            <?= $block->escapeHtml($block->getDate($order->getSelectedDate())); ?>
+                                            </span>
+                                        </td>
+                                        <td>        
+                                            <span class="label pro-status">
+                                            <?= $block->escapeHtml($order->getIncrementId()); ?>
+                                            </span>
+                                        </td>
+                                        <td>        
+                                            <span class="label pro-status">
+                                            <?= $block->escapeHtml($block->getSlot($order)); ?>
+                                            </span>
+                                        </td>
+                                        <td>        
+                                            <span class="label pro-status">
+                                            <?= $block->escapeHtml($order->getCreatedAt()); ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                        } ?>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom"><?= /* @noEscape */ $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    </fieldset>
+    <div class="buttons-set">
+        <p class="back-link">
+            <a href="javascript:;" 
+                onclick="javascript: window.history.back();" 
+                class="left"
+            >
+                &laquo; <?= $block->escapeHtml(__('Back')) ?>
+            </a>
+        </p>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Webkul_MpTimeDelivery/js/view/grid": {}
+        }
+    }
+</script>

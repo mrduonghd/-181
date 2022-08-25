@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Mpx_ConfigSetting" setup_version="1.0.0">
+        <sequence>
+            <module name="Mpx_Marketplace"/>
+            <module name="Webkul_MpTimeDelivery" />
+            <module name="Webkul_Mpshipping" />
+            <module name="Magento_Tax" />
+            <module name="Magento_Multishipping" />
+            <module name="Magento_Review" />
+            <module name="Magento_Newsletter" />
+        </sequence>
+    </module>
+</config>
+

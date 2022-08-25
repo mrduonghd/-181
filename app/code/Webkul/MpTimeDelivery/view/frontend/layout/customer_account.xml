@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" design_abstraction="custom">
+    <body>
+        <referenceContainer name="seller_account_navigation">
+            <block class="Webkul\MpTimeDelivery\Block\Link\Current" name="customer-account-timedelivery-index-link" ifconfig="timeslot/configurations/active">
+                <arguments>
+                    <argument name="path" xsi:type="string">timedelivery/account</argument>
+                    <argument name="label" xsi:type="string" translate="true">Time Slots Configuration</argument>
+                </arguments>
+            </block>
+            <block class="Webkul\MpTimeDelivery\Block\Link\Current" name="customer-account-delivery-order-link" ifconfig="timeslot/configurations/active">
+                <arguments>
+                    <argument name="path" xsi:type="string">timedelivery/seller/orders</argument>
+                    <argument name="label" xsi:type="string" translate="true">Delivery Order History</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

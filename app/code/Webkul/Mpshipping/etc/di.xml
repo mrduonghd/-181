@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Webkul\Mpshipping\Model\ResourceModel\Mpshipping\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_shippinglist</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\Mpshipping\Model\ResourceModel\Mpshipping</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="marketplace_shippilist_data_source" xsi:type="string">Webkul\Mpshipping\Model\ResourceModel\Mpshipping\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="ShippingsetGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\Mpshipping\Model\ResourceModel\Mpshippingset\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ShippingsetGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Webkul\Mpshipping\Model\ResourceModel\Mpshippingset\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_tablerate_superset</argument>
+            <argument name="eventPrefix" xsi:type="string">webkul_mpshipping_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">webkul_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\Mpshipping\Model\Resource\Mpshippingset</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="marketplace_tablerate_superset_data_source" xsi:type="string">Webkul\Mpshipping\Model\ResourceModel\Mpshippingset\Grid\Collection</item>
+                <item name="marketplace_tablerate_distanceset_data_source" xsi:type="string">Webkul\Mpshipping\Model\ResourceModel\MpshippingDist\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\Mpshipping\Model\ResourceModel\MpshippingDist\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_tablerate_distanceset</argument>
+            <argument name="eventPrefix" xsi:type="string">webkul_distance_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">distance_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\Mpshipping\Model\Resource\MpshippingDist</argument>
+        </arguments>
+    </type>
+    <virtualType name="DistancesetGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\Mpshipping\Model\ResourceModel\MpshippingDist\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DistancesetGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="\Webkul\Marketplace\Helper\Data">
+       <plugin name="Webkul_Mpshipping::updatedHelperDataFile"
+               type="Webkul\Mpshipping\Plugin\Helper\Data"
+               sortOrder="100" />
+    </type>
+    <preference for="Webkul\Mpshipping\Api\Data\MpshippingDistInterface" type="Webkul\Mpshipping\Model\MpshippingDist"/>
+    <preference for="Webkul\Mpshipping\Api\Data\SellerLocationInterface" type="Webkul\Mpshipping\Model\SellerLocation"/>
+</config>

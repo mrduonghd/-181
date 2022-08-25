@@ -1,0 +1,40 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $_order = $block->getOrder();
+    $_items = $_order->getItemsCollection();
+    $info = [];
+    $count = 0;
+?>
+<?php foreach ($_items as $_item): ?>
+    <?php
+        $itemId = $_item->getId();
+        $productId = $_item->getProductId();
+    if ($_item->getDeliveryDate() != '') {
+            $info[$_item->getId()]['date'] = $_item->getDeliveryDate();
+            $info[$_item->getId()]['time'] = $_item->getDeliveryTime();
+    } else {
+            $info[$_item->getId()]['date'] = '';
+            $info[$_item->getId()]['time'] = '';
+    }
+        $count++;
+    ?>
+<?php endforeach; ?>
+<?php
+$data = $block->getHelperObject()->getJson()->serialize(["info" => $info]); ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Webkul_MpTimeDelivery/js/order-items": <?= /*_ @noEscape _*/ $data ?>
+        }
+    }
+</script>

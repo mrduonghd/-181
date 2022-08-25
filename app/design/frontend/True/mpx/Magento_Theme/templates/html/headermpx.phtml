@@ -1,0 +1,31 @@
+<?php
+use Magento\Customer\Block\Account\AuthorizationLink;
+
+// @codingStandardsIgnoreFile
+
+/** @var AuthorizationLink $block */
+
+?>
+<div class="header-mpx">
+    <div class="header-mpx-content">
+        <a href="<?= $block->escapeUrl($block->getUrl('user_guide')) ?>"><?= $block->escapeHtml(__('User Guide')) ?></a>
+    </div>
+    <div class="header-mpx-content">
+        <?php if (!$block->isLoggedIn()): ?>
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/account/login')) ?>">
+                <?= $block->escapeHtml(__('Login')) ?>
+            </a>
+        <?php else: ?>
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>">
+                <?= $block->escapeHtml(__('My account')) ?>
+            </a>
+        <?php endif; ?>
+    </div>
+    <?php if (!$block->isLoggedIn()): ?>
+    <div class="header-mpx-content">
+        <a href="<?= $block->escapeUrl($block->getUrl('customer/account/create')) ?>">
+            <?= $block->escapeHtml(__('Create an account')) ?>
+        </a>
+    </div>
+    <?php endif; ?>
+</div>

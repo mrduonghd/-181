@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Mpshipping
+ *
+ * @category  Webkul
+ * @package   Webkul_Mpshipping
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Webkul_Mpshipping::menu" title="Table Rate Shipping Manager" module="Webkul_Mpshipping" sortOrder="100" parent="Webkul_Marketplace::marketplace" resource="Webkul_Mpshipping::menu"/>
+        <add id="Webkul_Mpshipping::mpshipping" title="Marketplace Table Rate Shipping Manager" module="Webkul_Mpshipping" sortOrder="6" parent="Webkul_Mpshipping::menu" action="mpshipping/shipping" resource="Webkul_Mpshipping::mpshipping"/>
+        <add id="Webkul_Mpshipping::mpshippingset" title="Marketplace Super Shipping Set Manager" module="Webkul_Mpshipping" sortOrder="7" parent="Webkul_Mpshipping::menu" action="mpshipping/shippingset" resource="Webkul_Mpshipping::mpshippingset"/>
+        <add id="Webkul_Mpshipping::distanceset" title="Shipping By Distance" module="Webkul_Mpshipping" sortOrder="8" parent="Webkul_Mpshipping::menu" action="mpshipping/distanceset" resource="Webkul_Mpshipping::distanceset"/>
+    </menu>
+</config>

@@ -1,0 +1,54 @@
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+-->
+<!--ko if: isEnabled == true -->
+<div class="slots-wrapper">
+	<div class="slots-content">
+		<!--ko foreach: { data: getSellerSlotData(), as: 'data'}-->
+<!--			<div class="seller-name">-->
+<!--				<span data-bind="i18n: 'Seller: '"></span>-->
+<!--				<span data-bind="text: data.name"></span>-->
+<!--			</div>-->
+			<table class="table time-slot">
+				<thead>
+					<tr>
+						<th data-bind="i18n: 'Date/Day'" style="text-align:center"></th>
+						<th data-bind="i18n: 'Delivery Time Slots'"></th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr class="slot-row">
+					<td>
+							<select class='wk_selectbox_slot' data-bind="optionsCaption: 'Choose Week day...',value: $parent.daySelect(data,data.id,event), valueUpdate: 'change',attr: {'id': 'wk_days_slot_'+data.id,'name': 'id_'+data.id}" name="wk_days_slot_">
+								<!-- <option data-bind="i18n:'Choose a Day'" class='day-time' value='' >Choose a Day</option> -->
+								<option data-bind="i18n:'None'" class='day-time'value='None' >None</option>
+								<!--ko foreach: { data: Object.keys($parent.getSortedSlots(data.slots)), as: 'key' } -->
+									<!-- ko if: $parents[1].checkDay(key, data.seller_start_date,data.id,data) -->
+									<option class='day-time'  data-bind="text: $parents[1].getFormatDate(key),attr:{keydata:key,'id': 'wk_days_option_'+data.id+'_'+$parents[1].getFormatDate(key)},i18n:$parents[1].getFormatDate(key)"></option>
+									<!-- /ko -->
+								<!-- /ko -->
+							</select>
+						</td>
+						<td>
+
+								<select class='wk_selectbox_slot ' data-bind="value: $parent.selectTimeSlot($data, $parents[2], $parents[1],event,false), valueUpdate: 'change'+ 'onLoad',attr: {'id': 'wk_slot_times_'+data.id,'name': 'id_'+data.id,'class':'wk_selectbox_slot wk_slots_time_'+data.id}" >
+									<!-- <option data-bind="i18n:'Choose Time Slot'" selected='selected'  value=''>Choose Time Slot</option> -->
+									<option data-bind="i18n:'None'" value='None'>None</option>
+									<!-- <option data-bind="text:$parent.getDefaultTimeRange(),attr: {data_date:$parent.getDefaultDate(),value:$parent.getDefaultTimeRange()}"></option> -->
+							</select>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<!-- /ko -->
+	</div>
+</div>
+<br/>
+<!-- /ko -->

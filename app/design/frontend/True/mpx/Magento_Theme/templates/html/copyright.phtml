@@ -1,0 +1,22 @@
+<?php
+use Magento\Theme\Block\Html\Footer;
+
+/**
+ * @var $block Footer
+ */
+
+?>
+<small class="copyright">
+    <a class="logo-mpx-footer-seller"></a>
+    <a class="footer_content" href="<?= $block->getBaseUrl().'store-tos';?>">
+        <?= $block->escapeHtml(__('Terms Of Service')) ?>
+    </a>
+    <a class="footer_content" href="#">
+        <?= $block->escapeHtml(__('Privacy Policy')) ?>
+    </a>
+    <a class="footer_content" href="#">
+        <?= $block->escapeHtml(__('Inquiry')) ?>
+    </a>
+    <div class="footer-true-mpx"><?= $block->escapeHtml(__('© 2022 TRUE Inc.', date('Y'))) ?></div>
+
+</small>

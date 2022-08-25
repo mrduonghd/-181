@@ -1,0 +1,36 @@
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_MpTimeDelivery
+ * @author Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+-->
+<!--ko if: isEnabled == true -->
+<div class="timeslot-information">
+    <div class="time-slot">
+        <div class="timeslot-information-title">
+            <span class="time-slot-title" data-bind="i18n: 'Time Slots'"></span><br>
+            <table class="slected-slots">
+                <thead>
+                    <th data-bind="i18n: 'Seller'"></th>
+                    <th data-bind="i18n: 'Time'"></th>
+                    <th data-bind="i18n: 'Date/Day'"></th>
+                </thead>
+                <!-- ko foreach: getSlotInfo() -->
+                <tbody>
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: slot_time"></td>
+                        <td data-bind="text: date"></td>
+                    </tr>
+                </tbody>
+                <!--/ko-->
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ko-->

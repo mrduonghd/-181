@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_TimeDelivery
+ * @author    Mpx
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="seller.content">
+            <block class="Webkul\MpTimeDelivery\Block\Order\View" name="timeslot.order.marketplace.view.separate" cacheable="false" template="Webkul_MpTimeDelivery::order/items.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

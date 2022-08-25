@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="marketplace_seller_save_before">
+        <observer name="mpx_seller_model_save_before" instance="Mpx\Marketplace\Observer\SellerSaveBefore" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="webkul_marketplace_sales_order_place_after_observer" instance="Mpx\Marketplace\Observer\SalesOrderPlaceAfterObserver" />
+    </event>
+</config>

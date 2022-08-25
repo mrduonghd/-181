@@ -1,0 +1,32 @@
+<?php
+// @codingStandardsIgnoreFile
+/**
+ * Mpx Software.
+ *
+ * @category  Mpx
+ * @package   Mpx_Marketplace
+ * @author    Mpx
+ */
+/** @var $block \Webkul\Marketplace\Block\Account\Earnings */
+$paramData = $block->getParmasDetail();
+$periodlist = $block->getPeriodValues();
+$filter = $paramData['period'] ?? '';
+$filterDateFrom = $paramData['from'] ?? '';
+$filterDateTo = $paramData['to'] ?? '';
+list($dataset, $labels)= $block->getDatasets();
+?>
+<form action="<?= $block->escapeUrl($block->getUrl('marketplace/account/earning', ["_secure" => $this->getRequest()->isSecure()])) ?>" enctype="multipart/form-data" method="get" data-role="form-earning-validate" data-mage-init='{"validation":{}}'>
+    <div class="wk-mp-design">
+
+    </div>
+</form>
+<div id="container" style="width: 100%; float:right">
+    <canvas id="canvas"></canvas>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Webkul_Marketplace/js/earning/date-range": {}
+        }
+    }
+</script>
